@@ -121,9 +121,12 @@ app.get('/api/verify-payment/:sessionId', async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
     
-    if (session.payment_status !== 'paid') {
-      return res.status(400).json({ error: 'Payment not completed' });
-    }
+   const isPaid = session.payment_status === 'paid' || session.status === 'complete';
+
+if (!isPaid) {
+  console.log('Payment not completed:', { status: session.status, payment_status: session.payment_status });
+  return res.json({ paid: false, error: 'Payment not completed' });
+}
 
     // Get submission ID from success_url
     const url = new URL(session.success_url);
