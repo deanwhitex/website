@@ -1,3 +1,6 @@
+App · JSX
+Copy
+
 import React, { useState, useEffect } from 'react';
 import Builder from './Builder.jsx';
 
@@ -6,11 +9,14 @@ const BK = "#0C0C0C";
 
 function Hero({ onStartBuilding }) {
   return (
-    <div style={{minHeight:'100vh', background:'#000', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden'}}>
+    <div style={{minHeight:'100vh', background:BK, display:'flex', flexDirection:'column', position:'relative', overflow:'hidden'}}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
       `}</style>
 
+      {/* Gradient overlay */}
+      <div style={{position:'absolute', inset:0, background:'radial-gradient(circle at 50% 20%, rgba(240,196,25,0.08) 0%, transparent 60%)', pointerEvents:'none'}}/>
+      
       {/* Header */}
       <div style={{padding:'2rem', display:'flex', justifyContent:'center', position:'relative', zIndex:10}}>
         <img src="/kc-logo.png" alt="King Contractor Agency" style={{height:'80px', width:'auto'}} />
@@ -32,7 +38,6 @@ function Hero({ onStartBuilding }) {
           </h1>
           
           <p style={{
-            fontFamily:"'Inter', sans-serif", 
             color:'rgba(255,255,255,0.7)', 
             fontSize:'clamp(1.1rem, 2.5vw, 1.35rem)', 
             maxWidth:'600px', 
@@ -93,7 +98,11 @@ function Hero({ onStartBuilding }) {
           </div>
         </div>
       </div>
-    
+      
+      {/* Footer info */}
+      <div style={{padding:'2rem', textAlign:'center', color:'rgba(255,255,255,0.4)', fontSize:'0.85rem', position:'relative', zIndex:10}}>
+        Professional, SEO-optimized websites for home service contractors — powered by AI
+      </div>
     </div>
   );
 }
@@ -237,21 +246,28 @@ export default function App() {
     if (sessionId) {
       setStage('generating');
       fetch(`/api/verify-payment/${sessionId}`)
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(`HTTP ${res.status}`);
+          }
+          return res.json();
+        })
         .then(data => {
-          if (data.paid) {
+          console.log('Payment verification response:', data);
+          if (data.paid === true) {
             setSubmissionId(data.submissionId);
             setBusinessName(data.businessName);
             setSubmissionData(data.data);
             window.history.replaceState({}, '', '/');
           } else {
-            alert('Payment not completed');
+            console.error('Payment verification failed:', data);
+            alert('Payment not completed: ' + (data.error || 'Unknown error'));
             setStage('hero');
           }
         })
         .catch(err => {
-          console.error('Payment verification failed:', err);
-          alert('Could not verify payment.');
+          console.error('Payment verification error:', err);
+          alert('Could not verify payment: ' + err.message);
           setStage('hero');
         });
     }
