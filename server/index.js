@@ -42,6 +42,58 @@ app.get('/api/health', async (req, res) => {
   });
 });
 
+// ─── Initialize Database ──────────────────────────────────────────────────────
+app.get('/api/setup-database', async (req, res) => {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS submissions (
+        id SERIAL PRIMARY KEY,
+        business_name VARCHAR(255) NOT NULL,
+        business_type VARCHAR(100) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        phone VARCHAR(50) NOT NULL,
+        city VARCHAR(100) NOT NULL,
+        state VARCHAR(50) NOT NULL,
+        zip VARCHAR(20),
+        address TEXT,
+        description TEXT,
+        tagline TEXT,
+        services JSONB NOT NULL,
+        service_areas TEXT,
+        logo_url TEXT,
+        primary_color VARCHAR(7),
+        secondary_color VARCHAR(7),
+        hero_image_url TEXT,
+        photos JSONB,
+        years_experience INTEGER,
+        emergency BOOLEAN DEFAULT false,
+        financing BOOLEAN DEFAULT false,
+        warranty TEXT,
+        certifications JSONB,
+        payment_status VARCHAR(50) DEFAULT 'pending',
+        stripe_session_id VARCHAR(255),
+        stripe_payment_intent_id VARCHAR(255),
+        amount_paid INTEGER DEFAULT 0,
+        paid_at TIMESTAMP,
+        generated_html TEXT,
+        generated_at TIMESTAMP,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+      
+      CREATE INDEX IF NOT EXISTS idx_stripe_session ON submissions(stripe_session_id);
+      CREATE INDEX IF NOT EXISTS idx_email ON submissions(email);
+      CREATE INDEX IF NOT EXISTS idx_payment_status ON submissions(payment_status);
+      CREATE INDEX IF NOT EXISTS idx_created_at ON submissions(created_at DESC);
+    `);
+    
+    res.json({ success: true, message: 'Database tables created successfully!' });
+  } catch (err) {
+    console.error('Database setup error:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // ─── Save Submission ──────────────────────────────────────────────────────────
 app.post('/api/submissions', async (req, res) => {
   const { business, services, brand } = req.body;
