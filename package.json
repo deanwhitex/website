@@ -1,0 +1,20 @@
+{
+  "name": "kc-builder-pro",
+  "version": "4.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "stripe": "^14.10.0",
+    "jszip": "^3.10.1",
+    "vite": "^5.1.0",
+    "@vitejs/plugin-react": "^4.2.1"
+  }
+}

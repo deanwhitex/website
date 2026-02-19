@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KC Builder - System Check</title>
+  <style>
+    body { font-family: monospace; background: #0c0c0c; color: #fff; padding: 2rem; max-width: 800px; margin: 0 auto; }
+    h1 { color: #F0C419; }
+    .check { padding: 1rem; margin: 1rem 0; background: #111; border-radius: 4px; border-left: 4px solid #666; }
+    .check.ok { border-left-color: #16a34a; }
+    .check.fail { border-left-color: #dc2626; }
+    .check h3 { margin: 0 0 0.5rem 0; }
+    button { background: #F0C419; color: #0c0c0c; border: none; padding: 1rem 2rem; font-size: 1rem; font-weight: bold; cursor: pointer; border-radius: 4px; }
+    pre { background: #000; padding: 1rem; border-radius: 4px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>🔧 System Diagnostic</h1>
+  <button onclick="runTests()">Run All Tests</button>
+  <div id="results"></div>
+
+  <script>
+    async function runTests() {
+      const results = document.getElementById('results');
+      results.innerHTML = '<p>Running tests...</p>';
+      
+      const tests = [];
+
+      // Test 1: Health Check
+      try {
+        const res = await fetch('/api/health');
+        const data = await res.json();
+        tests.push({
+          name: 'Server Health',
+          ok: data.status === 'ok',
+          details: `
+            ✓ Server is running
+            ${data.env.hasAnthropicKey ? '✓' : '✗'} ANTHROPIC_API_KEY ${data.env.hasAnthropicKey ? 'is set' : 'is MISSING'}
+            ${data.env.hasStripeKey ? '✓' : '✗'} STRIPE_SECRET_KEY ${data.env.hasStripeKey ? 'is set' : 'is MISSING'}
+            ${data.env.hasNetlifyToken ? '✓' : '✗'} NETLIFY_TOKEN ${data.env.hasNetlifyToken ? 'is set' : 'is MISSING'}
+          `
+        });
+      } catch (err) {
+        tests.push({
+          name: 'Server Health',
+          ok: false,
+          details: `Server unreachable: ${err.message}`
+        });
+      }
+
+      // Test 2: Claude API
+      try {
+        const res = await fetch('/api/claude', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 10,
+            messages: [{ role: 'user', content: 'test' }]
+          })
+        });
+        
+        if (res.ok) {
+          tests.push({
+            name: 'Claude API',
+            ok: true,
+            details: 'Claude API is working correctly'
+          });
+        } else {
+          const error = await res.json();
+          tests.push({
+            name: 'Claude API',
+            ok: false,
+            details: `API error: ${error.error?.message || 'Unknown error'}`
+          });
+        }
+      } catch (err) {
+        tests.push({
+          name: 'Claude API',
+          ok: false,
+          details: `Request failed: ${err.message}`
+        });
+      }
+
+      // Test 3: Stripe
+      try {
+        const res = await fetch('/api/create-payment-intent', { method: 'POST' });
+        const data = await res.json();
+        tests.push({
+          name: 'Stripe Payment',
+          ok: !!data.clientSecret,
+          details: data.clientSecret ? 'Stripe is configured correctly' : `Error: ${data.error || 'Unknown'}`
+        });
+      } catch (err) {
+        tests.push({
+          name: 'Stripe Payment',
+          ok: false,
+          details: `Request failed: ${err.message}`
+        });
+      }
+
+      // Display results
+      results.innerHTML = tests.map(t => `
+        <div class="check ${t.ok ? 'ok' : 'fail'}">
+          <h3>${t.ok ? '✓' : '✗'} ${t.name}</h3>
+          <pre>${t.details}</pre>
+        </div>
+      `).join('');
+
+      const allOk = tests.every(t => t.ok);
+      results.innerHTML += `
+        <div class="check ${allOk ? 'ok' : 'fail'}">
+          <h3>${allOk ? '✓ All Systems Operational' : '✗ Action Required'}</h3>
+          ${allOk ? 
+            '<p>Everything is working! Go to the homepage to start building.</p>' :
+            '<p>Fix the issues above by setting missing environment variables in Render.</p>'
+          }
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
