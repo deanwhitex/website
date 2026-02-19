@@ -42,7 +42,7 @@ function Hero({ onStartBuilding }) {
             fontWeight:'400',
             lineHeight:1.6
           }}>
-            Professional websites in 5 minutes. AI writes everything. Download HTML or get an instant live URL.
+            Professional websites in 5 minutes. AI writes everything. Download HTML or get instant live URL. $97.
           </p>
           
           <button 
@@ -242,6 +242,14 @@ export default function App() {
 
     if (sessionId) {
       setStage('generating');
+      
+      // Timeout fallback - if nothing happens in 30 seconds, show error
+      const timeout = setTimeout(() => {
+        console.error('Payment verification timeout');
+        alert('Payment verification took too long. Please contact support.');
+        setStage('hero');
+      }, 30000);
+      
       fetch(`/api/verify-payment/${sessionId}`)
         .then(res => {
           if (!res.ok) {
@@ -250,6 +258,7 @@ export default function App() {
           return res.json();
         })
         .then(data => {
+          clearTimeout(timeout);
           console.log('Payment verification response:', data);
           if (data.paid === true) {
             setSubmissionId(data.submissionId);
@@ -263,6 +272,7 @@ export default function App() {
           }
         })
         .catch(err => {
+          clearTimeout(timeout);
           console.error('Payment verification error:', err);
           alert('Could not verify payment: ' + err.message);
           setStage('hero');
@@ -342,9 +352,13 @@ export default function App() {
     return (
       <>
         <Generating businessName={businessName} />
-        {submissionData && (
+        {submissionData ? (
           <div style={{display:'none'}}>
             <Builder autoGenerate={true} prefilledData={submissionData} onGenerated={handleGenerated} submissionId={submissionId} />
+          </div>
+        ) : (
+          <div style={{position:'fixed', bottom:'20px', left:'50%', transform:'translateX(-50%)', background:'#ff6b6b', color:'white', padding:'1rem 2rem', borderRadius:'8px', fontSize:'0.9rem', zIndex:1000}}>
+            Error: No submission data. Check console (F12)
           </div>
         )}
       </>
