@@ -93,47 +93,7 @@ function Hero({ onStartBuilding }) {
           </div>
         </div>
       </div>
-      
-      {/* Footer info */}
-       <footer style={{background:"#050505", borderTop:`2px solid ${Y}`, padding:"2.75rem 2rem 1.75rem"}}>
-        <div style={{maxWidth:"1080px", margin:"0 auto"}}>
-          <div style={{display:"grid", gridTemplateColumns:"1.4fr 1fr 1fr", gap:"2rem", marginBottom:"2rem"}}>
-            <div>
-              <img src={KC_LOGO} alt="King Contractor Agency" style={{height:"44px", width:"auto", marginBottom:"1rem"}} />
-              <p style={{color:"#888", fontSize:".85rem", lineHeight:1.8, maxWidth:"280px"}}>America's best home service website builder. Professional, AI-powered websites that convert visitors into customers.</p>
-            </div>
-            <div>
-              <div style={{fontFamily:"'Bebas Neue',sans-serif", fontSize:".95rem", letterSpacing:"3px", color:Y, marginBottom:".75rem"}}>Quick Links</div>
-              {[
-                {l:"Portfolio",     u:"https://kingcontractor.com/portfolio/"},
-                {l:"Contact Us",    u:"https://kingcontractor.com/contact-us/"},
-              ].map(({l,u})=>(
-                <div key={l}><a href={u} target="_blank" rel="noopener"
-                  style={{color:"#777", fontSize:".83rem", lineHeight:2.2, display:"block", transition:"color .2s", textDecoration:"none"}}
-                  onMouseEnter={e=>e.currentTarget.style.color=Y}
-                  onMouseLeave={e=>e.currentTarget.style.color="#777"}>{l}</a></div>
-              ))}
-            </div>
-            <div>
-              <div style={{fontFamily:"'Bebas Neue',sans-serif", fontSize:".95rem", letterSpacing:"3px", color:Y, marginBottom:".75rem"}}>Contact</div>
-              <p style={{color:"#3a3a3a", fontSize:".83rem", lineHeight:2.2}}>
-                <a href="tel:4076413731" style={{color:"#777", textDecoration:"none", transition:"color .2s"}} onMouseEnter={e=>e.currentTarget.style.color=Y} onMouseLeave={e=>e.currentTarget.style.color="#777"}>+1 (407) 641-3731</a>
-              </p>
-              <p style={{color:"#777", fontSize:".83rem", lineHeight:1.9}}>30 N. Gould St. Ste R<br/>Sheridan, WY 82801</p>
-            </div>
-          </div>
-          <div style={{borderTop:"1px solid #1e1e1e", paddingTop:"1.5rem", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:"1rem"}}>
-            <span style={{color:"#666", fontSize:".75rem"}}>&copy; {new Date().getFullYear()} King Contractor Agency. All Rights Reserved.</span>
-            <div style={{display:"flex", gap:"1.5rem"}}>
-              {[{l:"Privacy Policy",u:"https://kingcontractor.com/"},{l:"Terms of Service",u:"https://kingcontractor.com/"}].map(({l,u})=>(
-                <a key={l} href={u} target="_blank" style={{color:"#666", fontSize:".75rem", textDecoration:"none", transition:"color .2s"}}
-                  onMouseEnter={e=>e.currentTarget.style.color=Y}
-                  onMouseLeave={e=>e.currentTarget.style.color="#666"}>{l}</a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+    
     </div>
   );
 }
