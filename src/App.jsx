@@ -6,14 +6,11 @@ const BK = "#0C0C0C";
 
 function Hero({ onStartBuilding }) {
   return (
-    <div style={{minHeight:'100vh', background:BK, display:'flex', flexDirection:'column', position:'relative', overflow:'hidden'}}>
+    <div style={{minHeight:'100vh', background:'#000', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden'}}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
       `}</style>
 
-      {/* Gradient overlay */}
-      <div style={{position:'absolute', inset:0, background:'radial-gradient(circle at 50% 20%, rgba(240,196,25,0.08) 0%, transparent 60%)', pointerEvents:'none'}}/>
-      
       {/* Header */}
       <div style={{padding:'2rem', display:'flex', justifyContent:'center', position:'relative', zIndex:10}}>
         <img src="/kc-logo.png" alt="King Contractor Agency" style={{height:'80px', width:'auto'}} />
