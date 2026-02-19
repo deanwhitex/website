@@ -9,31 +9,6 @@ function Hero({ onStartBuilding }) {
     <div style={{minHeight:'100vh', background:BK, display:'flex', flexDirection:'column', position:'relative', overflow:'hidden'}}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-        
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .hero-content > * {
-          animation: fadeInUp 0.8s ease-out forwards;
-        }
-        
-        .hero-content > *:nth-child(2) { animation-delay: 0.1s; }
-        .hero-content > *:nth-child(3) { animation-delay: 0.2s; }
-        .hero-content > *:nth-child(4) { animation-delay: 0.3s; }
-        .hero-content > *:nth-child(5) { animation-delay: 0.4s; }
       `}</style>
 
       {/* Gradient overlay */}
@@ -46,7 +21,7 @@ function Hero({ onStartBuilding }) {
       
       {/* Main content */}
       <div style={{flex:1, display:'flex', alignItems:'center', justifyContent:'center', padding:'0 2rem', position:'relative', zIndex:1}}>
-        <div className="hero-content" style={{textAlign:'center', maxWidth:'800px', opacity:0}}>
+        <div className="hero-content" style={{textAlign:'center', maxWidth:'800px'}}>
           <h1 style={{
             fontFamily:"'Inter', sans-serif", 
             fontSize:'clamp(2.5rem, 7vw, 4.5rem)', 
