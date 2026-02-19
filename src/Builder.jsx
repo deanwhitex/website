@@ -1240,7 +1240,6 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
     </p>
     <Btn 
       onClick={() => {
-        // Save to database and redirect to Stripe
         if (onFormComplete) {
           onFormComplete({ business: biz, brand: brand });
         }
