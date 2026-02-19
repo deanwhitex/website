@@ -42,61 +42,9 @@ app.get('/api/health', async (req, res) => {
   });
 });
 
-// ─── Initialize Database ──────────────────────────────────────────────────────
-app.get('/api/setup-database', async (req, res) => {
-  try {
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS submissions (
-        id SERIAL PRIMARY KEY,
-        business_name VARCHAR(255) NOT NULL,
-        business_type VARCHAR(100) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        phone VARCHAR(50) NOT NULL,
-        city VARCHAR(100) NOT NULL,
-        state VARCHAR(50) NOT NULL,
-        zip VARCHAR(20),
-        address TEXT,
-        description TEXT,
-        tagline TEXT,
-        services JSONB NOT NULL,
-        service_areas TEXT,
-        logo_url TEXT,
-        primary_color VARCHAR(7),
-        secondary_color VARCHAR(7),
-        hero_image_url TEXT,
-        photos JSONB,
-        years_experience INTEGER,
-        emergency BOOLEAN DEFAULT false,
-        financing BOOLEAN DEFAULT false,
-        warranty TEXT,
-        certifications JSONB,
-        payment_status VARCHAR(50) DEFAULT 'pending',
-        stripe_session_id VARCHAR(255),
-        stripe_payment_intent_id VARCHAR(255),
-        amount_paid INTEGER DEFAULT 0,
-        paid_at TIMESTAMP,
-        generated_html TEXT,
-        generated_at TIMESTAMP,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      );
-      
-      CREATE INDEX IF NOT EXISTS idx_stripe_session ON submissions(stripe_session_id);
-      CREATE INDEX IF NOT EXISTS idx_email ON submissions(email);
-      CREATE INDEX IF NOT EXISTS idx_payment_status ON submissions(payment_status);
-      CREATE INDEX IF NOT EXISTS idx_created_at ON submissions(created_at DESC);
-    `);
-    
-    res.json({ success: true, message: 'Database tables created successfully!' });
-  } catch (err) {
-    console.error('Database setup error:', err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
 // ─── Save Submission ──────────────────────────────────────────────────────────
 app.post('/api/submissions', async (req, res) => {
-  const { business, services, brand } = req.body;
+  const { business, brand } = req.body;
 
   try {
     const result = await pool.query(
@@ -110,7 +58,7 @@ app.post('/api/submissions', async (req, res) => {
       [
         business.name, business.type, business.email, business.phone,
         business.city, business.state, business.zip || null, business.address || null,
-        business.description, business.tagline, JSON.stringify(services),
+        business.description, business.tagline, JSON.stringify(business.services || []),
         business.serviceAreas || null, brand.logo || null, brand.primary || null,
         brand.secondary || null, brand.hero || null, JSON.stringify(brand.photos || []),
         business.years || null, business.emergency || false, business.financing || false,
@@ -150,131 +98,156 @@ app.post('/api/create-checkout/:submissionId', async (req, res) => {
             name: 'AI Website Builder',
             description: 'Professional contractor website with instant deployment',
           },
-          unit_amount: 9700,
+          unit_amount: 9700, // $97.00
         },
         quantity: 1,
       }],
       mode: 'payment',
-      metadata: { submission_id: submissionId.toString() },
-      success_url: `${req.headers.origin || 'http://localhost:3000'}/?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.origin || 'http://localhost:3000'}/?canceled=true`,
+      success_url: `${req.headers.origin || 'http://localhost:3000'}?session_id={CHECKOUT_SESSION_ID}&submission_id=${submissionId}`,
+      cancel_url: `${req.headers.origin || 'http://localhost:3000'}?canceled=true`,
     });
-
-    await pool.query('UPDATE submissions SET stripe_session_id = $1 WHERE id = $2', [session.id, submissionId]);
 
     res.json({ url: session.url });
   } catch (err) {
-    console.error('Checkout session error:', err);
+    console.error('Checkout error:', err);
     res.status(500).json({ error: err.message });
   }
 });
 
-// ─── Verify Payment & Get Data (STRICT - ONLY PAID) ──────────────────────────
+// ─── Verify Payment ───────────────────────────────────────────────────────────
 app.get('/api/verify-payment/:sessionId', async (req, res) => {
+  const { sessionId } = req.params;
+
   try {
-    const session = await stripe.checkout.sessions.retrieve(req.params.sessionId);
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
     
     if (session.payment_status !== 'paid') {
-      return res.json({ paid: false, error: 'Payment not completed' });
+      return res.status(400).json({ error: 'Payment not completed' });
     }
 
-    const submissionId = session.metadata.submission_id;
+    // Get submission ID from success_url
+    const url = new URL(session.success_url);
+    const submissionId = url.searchParams.get('submission_id');
+
+    if (!submissionId) {
+      return res.status(400).json({ error: 'Submission ID not found' });
+    }
+
+    // Update payment status
+    await pool.query(
+      'UPDATE submissions SET payment_status = $1, stripe_session_id = $2, paid_at = NOW() WHERE id = $3',
+      ['paid', sessionId, submissionId]
+    );
+
+    // Get submission data
     const result = await pool.query('SELECT * FROM submissions WHERE id = $1', [submissionId]);
-    
-    if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Submission not found' });
-    }
-
     const sub = result.rows[0];
 
-    // Mark as paid if not already
-    if (sub.payment_status !== 'paid') {
-      await pool.query(
-        `UPDATE submissions 
-         SET payment_status = 'paid', 
-             stripe_payment_intent_id = $1,
-             amount_paid = $2,
-             paid_at = CURRENT_TIMESTAMP
-         WHERE id = $3`,
-        [session.payment_intent, session.amount_total, submissionId]
-      );
-    }
-
-    // Return data for generation
-    res.json({ 
-      paid: true,
-      submissionId: submissionId,
-      businessName: sub.business_name,
-      data: {
-        business: {
-          name: sub.business_name,
-          type: sub.business_type,
-          email: sub.email,
-          phone: sub.phone,
-          city: sub.city,
-          state: sub.state,
-          zip: sub.zip,
-          address: sub.address,
-          description: sub.description,
-          tagline: sub.tagline,
-          serviceAreas: sub.service_areas,
-          years: sub.years_experience,
-          emergency: sub.emergency,
-          financing: sub.financing,
-          warranty: sub.warranty,
-          certs: sub.certifications
-        },
-        services: sub.services,
-        brand: {
-          logo: sub.logo_url,
-          primary: sub.primary_color,
-          secondary: sub.secondary_color,
-          hero: sub.hero_image_url,
-          photos: sub.photos
-        }
+    res.json({
+      verified: true,
+      submissionId: sub.id,
+      business: {
+        name: sub.business_name,
+        type: sub.business_type,
+        email: sub.email,
+        phone: sub.phone,
+        city: sub.city,
+        state: sub.state,
+        zip: sub.zip,
+        address: sub.address,
+        description: sub.description,
+        tagline: sub.tagline,
+        services: JSON.parse(sub.services || '[]'),
+        serviceAreas: sub.service_areas,
+        years: sub.years_experience,
+        emergency: sub.emergency,
+        financing: sub.financing,
+        warranty: sub.warranty,
+        certs: JSON.parse(sub.certifications || '[]'),
+      },
+      brand: {
+        logo: sub.logo_url,
+        hero: sub.hero_image_url,
+        photos: JSON.parse(sub.photos || '[]'),
+        primary: sub.primary_color,
+        secondary: sub.secondary_color,
       }
     });
   } catch (err) {
-    console.error('Payment verification error:', err);
+    console.error('Verify payment error:', err);
     res.status(500).json({ error: err.message });
   }
 });
 
-// ─── Claude API Proxy (WITH PAYMENT CHECK) ────────────────────────────────────
-app.post('/api/claude/:submissionId', async (req, res) => {
-  const { submissionId } = req.params;
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  
-  if (!apiKey) {
-    return res.status(500).json({ error: { message: 'ANTHROPIC_API_KEY not configured' } });
-  }
-
-  // STRICT: Verify payment before allowing AI generation
-  try {
-    const check = await pool.query('SELECT payment_status FROM submissions WHERE id = $1', [submissionId]);
-    if (check.rows.length === 0 || check.rows[0].payment_status !== 'paid') {
-      return res.status(403).json({ error: { message: 'Payment required to generate website' } });
-    }
-  } catch (err) {
-    return res.status(500).json({ error: { message: 'Database error' } });
-  }
+// ─── AI Content Generation ───────────────────────────────────────────────────
+app.post('/api/generate-content', async (req, res) => {
+  const { business } = req.body;
 
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': apiKey,
+        'x-api-key': process.env.ANTHROPIC_API_KEY,
         'anthropic-version': '2023-06-01',
       },
-      body: JSON.stringify(req.body),
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 4000,
+        messages: [{
+          role: 'user',
+          content: `You are a professional copywriter for home service contractors. Generate website content for this business:
+
+Business: ${business.name}
+Type: ${business.type}
+Location: ${business.city}, ${business.state}
+Description: ${business.description}
+Services: ${business.services?.join(', ') || 'General services'}
+Years: ${business.years || 'Established'} years
+Tagline: ${business.tagline}
+
+Generate ONLY valid JSON (no markdown, no explanation) with this exact structure:
+{
+  "heroHeadline": "powerful 5-8 word headline focused on the main benefit",
+  "heroSub": "supporting tagline that reinforces trust and expertise",
+  "aboutHeadline": "About [Business Name]",
+  "aboutText": "2-3 compelling paragraphs about the business, incorporating their description, years of experience, and what makes them unique",
+  "ctaHeadline": "compelling call-to-action headline",
+  "ctaText": "persuasive 1-2 sentence CTA text",
+  "services": [
+    {
+      "name": "service name from their list",
+      "description": "2-3 sentences explaining this service and its benefits"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "common customer question",
+      "answer": "detailed helpful answer"
+    }
+  ],
+  "seoTitle": "SEO-optimized title under 60 chars",
+  "seoDescription": "compelling meta description under 160 chars"
+}`
+        }]
+      })
     });
 
     const data = await response.json();
-    res.status(response.status).json(data);
+    const content = data.content[0].text;
+    
+    // Parse JSON response
+    let jsonMatch = content.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      throw new Error('No JSON found in response');
+    }
+    
+    const parsed = JSON.parse(jsonMatch[0]);
+    res.json(parsed);
+
   } catch (err) {
-    console.error('Claude API error:', err);
-    res.status(500).json({ error: { message: err.message } });
+    console.error('AI generation error:', err);
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -282,108 +255,50 @@ app.post('/api/claude/:submissionId', async (req, res) => {
 app.post('/api/deploy/:submissionId', async (req, res) => {
   const { submissionId } = req.params;
   const { html, siteName } = req.body;
-  const netlifyToken = process.env.NETLIFY_TOKEN;
-
-  if (!netlifyToken) {
-    return res.status(500).json({ error: 'NETLIFY_TOKEN not configured' });
-  }
-
-  // Verify payment
-  try {
-    const check = await pool.query('SELECT payment_status FROM submissions WHERE id = $1', [submissionId]);
-    if (check.rows.length === 0 || check.rows[0].payment_status !== 'paid') {
-      return res.status(403).json({ error: 'Payment required' });
-    }
-  } catch (err) {
-    return res.status(500).json({ error: 'Database error' });
-  }
 
   try {
-    // Create site
-    const siteResponse = await fetch('https://api.netlify.com/api/v1/sites', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${netlifyToken}`,
-      },
-      body: JSON.stringify({
-        name: siteName.toLowerCase().replace(/[^a-z0-9-]/g, '-'),
-      }),
-    });
-
-    if (!siteResponse.ok) {
-      const error = await siteResponse.text();
-      throw new Error(`Site creation failed: ${error}`);
-    }
-
-    const site = await siteResponse.json();
-    const siteId = site.id;
-
-    // Create zip
+    // Create ZIP with index.html
     const zip = new JSZip();
     zip.file('index.html', html);
-    const zipBlob = await zip.generateAsync({ type: 'nodebuffer' });
+    const zipBuffer = await zip.generateAsync({ type: 'nodebuffer' });
 
-    // Deploy
-    const deployResponse = await fetch(`https://api.netlify.com/api/v1/sites/${siteId}/deploys`, {
+    // Deploy to Netlify
+    const deployRes = await fetch('https://api.netlify.com/api/v1/sites', {
       method: 'POST',
       headers: {
+        'Authorization': `Bearer ${process.env.NETLIFY_TOKEN}`,
         'Content-Type': 'application/zip',
-        'Authorization': `Bearer ${netlifyToken}`,
       },
-      body: zipBlob,
+      body: zipBuffer,
     });
 
-    if (!deployResponse.ok) {
-      const error = await deployResponse.text();
-      throw new Error(`Deploy failed: ${error}`);
+    if (!deployRes.ok) {
+      throw new Error('Netlify deployment failed');
     }
 
-    const deploy = await deployResponse.json();
+    const deployData = await deployRes.json();
+    const siteUrl = deployData.ssl_url || deployData.url;
 
-    res.json({
-      url: site.ssl_url || site.url,
-      adminUrl: site.admin_url,
-      deployId: deploy.id,
-    });
-  } catch (err) {
-    console.error('Netlify deploy error:', err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// ─── Save Generated HTML ──────────────────────────────────────────────────────
-app.post('/api/save-website/:submissionId', async (req, res) => {
-  const { submissionId } = req.params;
-  const { html, netlifyUrl } = req.body;
-
-  try {
+    // Update database with deployment URL
     await pool.query(
-      `UPDATE submissions 
-       SET generated_html = $1, generated_at = CURRENT_TIMESTAMP 
-       WHERE id = $2 AND payment_status = 'paid'`,
-      [html, submissionId]
+      'UPDATE submissions SET site_url = $1, deployed_at = NOW() WHERE id = $2',
+      [siteUrl, submissionId]
     );
 
-    res.json({ success: true });
+    res.json({ url: siteUrl });
   } catch (err) {
-    console.error('Save website error:', err);
+    console.error('Deploy error:', err);
     res.status(500).json({ error: err.message });
   }
 });
 
-// ─── Static Files & SPA Fallback ──────────────────────────────────────────────
+// ─── Serve Static Files ───────────────────────────────────────────────────────
 app.use(express.static(join(__dirname, '../dist')));
 app.get('*', (req, res) => {
   res.sendFile(join(__dirname, '../dist/index.html'));
 });
 
-app.listen(PORT, async () => {
+// ─── Start Server ─────────────────────────────────────────────────────────────
+app.listen(PORT, () => {
   console.log(`✓ Server running on port ${PORT}`);
-  try {
-    await pool.query('SELECT NOW()');
-    console.log('✓ Database connected');
-  } catch (err) {
-    console.error('✗ Database connection failed:', err.message);
-  }
 });
