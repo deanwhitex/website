@@ -32,6 +32,7 @@ function Hero({ onStartBuilding }) {
           </h1>
           
           <p style={{
+            fontFamily:"'Inter', sans-serif", 
             color:'rgba(255,255,255,0.7)', 
             fontSize:'clamp(1.1rem, 2.5vw, 1.35rem)', 
             maxWidth:'600px', 
@@ -39,7 +40,7 @@ function Hero({ onStartBuilding }) {
             fontWeight:'400',
             lineHeight:1.6
           }}>
-            Professional websites in 5 minutes. AI writes everything. Download HTML or get instant live URL. $97.
+            Professional websites in 5 minutes. AI writes everything. Download HTML or get an instant live URL.
           </p>
           
           <button 
