@@ -160,6 +160,16 @@ app.get('/api/verify-payment/:sessionId', async (req, res) => {
     }
 
     const sub = result.rows[0];
+    
+    console.log('Database record:', {
+      id: sub.id,
+      business_name: sub.business_name,
+      services_raw: sub.services,
+      services_type: typeof sub.services,
+      certifications_raw: sub.certifications,
+      has_logo: !!sub.logo_url,
+      has_primary: !!sub.primary_color
+    });
 
     // Mark as paid if not already
     if (sub.payment_status !== 'paid') {
@@ -176,8 +186,20 @@ app.get('/api/verify-payment/:sessionId', async (req, res) => {
 
     console.log('Payment verified successfully for submission:', submissionId);
 
+    // Parse JSON fields
+    const parsedServices = sub.services ? JSON.parse(sub.services) : [];
+    const parsedCerts = sub.certifications ? JSON.parse(sub.certifications) : [];
+    const parsedPhotos = sub.photos ? JSON.parse(sub.photos) : [];
+    
+    console.log('Parsed data:', {
+      services: parsedServices,
+      servicesCount: parsedServices.length,
+      certs: parsedCerts,
+      certsCount: parsedCerts.length
+    });
+
     // Return data for generation
-    res.json({ 
+    const responseData = { 
       paid: true,
       submissionId: submissionId,
       businessName: sub.business_name,
@@ -198,18 +220,21 @@ app.get('/api/verify-payment/:sessionId', async (req, res) => {
           emergency: sub.emergency,
           financing: sub.financing,
           warranty: sub.warranty,
-          certs: sub.certifications
+          services: parsedServices,
+          certs: parsedCerts
         },
-        services: sub.services,
         brand: {
           logo: sub.logo_url,
           primary: sub.primary_color,
           secondary: sub.secondary_color,
           hero: sub.hero_image_url,
-          photos: sub.photos
+          photos: parsedPhotos
         }
       }
-    });
+    };
+    
+    console.log('Returning response:', JSON.stringify(responseData, null, 2));
+    res.json(responseData);
   } catch (err) {
     console.error('Payment verification error:', err);
     res.status(500).json({ error: err.message });
