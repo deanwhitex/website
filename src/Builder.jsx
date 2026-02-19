@@ -851,17 +851,6 @@ function FieldWrap({ label, required, hint, children, style={} }) {
 export default function Builder({ onFormComplete, autoGenerate, prefilledData, onGenerated, submissionId }) {
   const [step, setStep] = useState(1);
 
-  
-  // Auto-generate when returning from Stripe payment
-  React.useEffect(() => {
-    if (autoGenerate && prefilledData) {
-      // Set the data
-      setBiz(prefilledData.business);
-      setBrand(prefilledData.brand);
-      // Trigger generation
-      setTimeout(() => generateWebsite(), 1000);
-    }
-  }, [autoGenerate]);
   const [html, setHtml] = useState("");
   const [preview, setPreview] = useState(false);
   const [aiContent, setAiContent] = useState(null);
@@ -947,6 +936,21 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
     setGenerating(false);
   };
 
+  // Auto-generate when returning from Stripe payment
+  React.useEffect(() => {
+    if (autoGenerate && prefilledData) {
+      console.log('AutoGenerate triggered with data:', prefilledData);
+      // Set the data
+      setBiz(prefilledData.business);
+      setBrand(prefilledData.brand);
+      // Trigger generation after state updates
+      setTimeout(() => {
+        console.log('About to call runGenerate');
+        runGenerate();
+      }, 1000);
+    }
+  }, [autoGenerate, prefilledData]);
+
   const download = () => {
     const blob = new Blob([html],{type:"text/html"});
     const url = URL.createObjectURL(blob);
@@ -978,6 +982,61 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
         ::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:3px}
         ::-webkit-scrollbar-thumb:hover{background:${Y}}
         .kfade{animation:kfade .3s ease-out}
+        
+        /* Mobile Responsive Fixes */
+        @media (max-width: 768px) {
+          /* Hide sidebar on mobile */
+          .builder-container > div:first-child {
+            display: none !important;
+          }
+          
+          /* Stack grids on mobile */
+          [style*="grid-template-columns: 1fr 1fr"],
+          [style*="grid-template-columns: 1fr 1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+          }
+          
+          /* Reduce card padding on mobile */
+          [style*="padding: 1.75rem"] {
+            padding: 1.25rem !important;
+          }
+          
+          /* Make service cards single column */
+          [style*="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr))"],
+          [style*="grid-template-columns: repeat(auto-fill, minmax(210px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+          }
+          
+          /* Reduce nav padding */
+          nav[style*="padding: 0 2rem"] {
+            padding: 0 1rem !important;
+          }
+          
+          /* Hide nav links on mobile */
+          nav > div > div:last-child > a:not(:last-child) {
+            display: none !important;
+          }
+          
+          /* Stack hero badges */
+          .hero-badges {
+            flex-direction: column !important;
+            gap: 0.5rem !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          /* Even smaller padding on very small screens */
+          [style*="padding: 1.25rem"] {
+            padding: 1rem !important;
+          }
+          
+          /* Make buttons full width on very small screens */
+          button[style*="padding: 14px 36px"],
+          button[style*="padding: 12px 20px"] {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+        }
       `}</style>
 
       {/* ── Top util bar ── */}
@@ -1040,7 +1099,7 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
 
       {/* ── Builder ── */}
       <div style={{maxWidth:"1100px", margin:"0 auto", padding:"2rem 2rem 4rem"}}>
-        <div style={{display:"flex", gap:"2.5rem", alignItems:"flex-start"}}>
+        <div style={{display:"flex", gap:"2.5rem", alignItems:"flex-start"}} className="builder-container">
 
           {/* Sidebar */}
           <Sidebar step={step} />
@@ -1231,25 +1290,18 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
               <div>
                 <SectionHead step={4} title="AI Generation & Preview" subtitle="Claude writes your headline, about us, service descriptions, FAQ, and SEO — then builds your complete website." />
 
-{aiStatus === "idle" && (
-  <div style={{textAlign:"center", padding:"2rem 0"}}>
-    <div style={{width:"72px", height:"72px", background:Y, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 1.25rem", fontSize:"1.8rem"}}>✦</div>
-    <h3 style={{fontFamily:"'Bebas Neue',sans-serif", fontSize:"1.8rem", letterSpacing:"1px", color:"#111", marginBottom:".5rem"}}>Review & Proceed to Payment</h3>
-    <p style={{color:"#888", fontSize:".9rem", maxWidth:"460px", margin:"0 auto 2rem", lineHeight:1.7}}>
-      Once payment is complete, AI will write a custom headline, tagline, about section, service descriptions, 4-question FAQ, and full SEO metadata — all tailored to <strong>{biz.name || "your business"}</strong> in <strong>{biz.city || "your city"}</strong>.
-    </p>
-    <Btn 
-      onClick={() => {
-        if (onFormComplete) {
-          onFormComplete({ business: biz, brand: brand });
-        }
-      }} 
-      style={{fontSize:"1.3rem", padding:"14px 36px"}}
-    >
-      PROCEED TO PAYMENT ($97)
-    </Btn>
-  </div>
-)}
+                {aiStatus === "idle" && (
+                  <div style={{textAlign:"center", padding:"2rem 0"}}>
+                    <div style={{width:"72px", height:"72px", background:Y, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 1.25rem", fontSize:"1.8rem"}}>✦</div>
+                    <h3 style={{fontFamily:"'Bebas Neue',sans-serif", fontSize:"1.8rem", letterSpacing:"1px", color:"#111", marginBottom:".5rem"}}>Ready to Build</h3>
+                    <p style={{color:"#888", fontSize:".9rem", maxWidth:"400px", margin:"0 auto 2rem", lineHeight:1.7}}>
+                      AI will write a custom headline, tagline, about section, service descriptions, 4-question FAQ, and full SEO metadata — all tailored to <strong>{biz.name || "your business"}</strong> in <strong>{biz.city || "your city"}</strong>.
+                    </p>
+                    <Btn onClick={runGenerate} style={{fontSize:"1.3rem", padding:"14px 36px"}}>
+                      {Icons.wand} Generate My Website
+                    </Btn>
+                  </div>
+                )}
 
                 {aiStatus === "loading" && (
                   <div style={{padding:"1.5rem 0"}}>
@@ -1343,6 +1395,19 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
       {/* ── Trust Strip ── */}
       <div style={{background:"#0a0a0a", borderTop:"1px solid #1a1a1a", borderBottom:"1px solid #1a1a1a", padding:"20px 2rem"}}>
         <div style={{maxWidth:"1100px", margin:"0 auto", display:"flex", justifyContent:"center", alignItems:"center", gap:"0", flexWrap:"wrap"}}>
+          {[
+            {icon:"★", text:"5-Star Rated Agency"},
+            {icon:"✓", text:"Licensed & Insured"},
+            {icon:"⚡", text:"Fast Turnaround"},
+            {icon:"🔒", text:"Money-Back Guarantee"},
+            {icon:"📍", text:"Serving All 50 States"},
+          ].map(({icon,text},i)=>(
+            <div key={i} style={{display:"flex", alignItems:"center", gap:"8px", padding:"6px 28px",
+              borderRight: i<4 ? "1px solid #1e1e1e" : "none"}}>
+              <span style={{fontSize:".9rem", lineHeight:1}}>{icon}</span>
+              <span style={{fontFamily:"'Barlow Condensed',sans-serif", fontWeight:700, fontSize:".78rem", letterSpacing:"1.5px", textTransform:"uppercase", color:"#666"}}>{text}</span>
+            </div>
+          ))}
         </div>
       </div>
 
