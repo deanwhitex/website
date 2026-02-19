@@ -105,7 +105,7 @@ function Hero({ onStartBuilding }) {
             <div>
               <div style={{fontFamily:"'Bebas Neue',sans-serif", fontSize:".95rem", letterSpacing:"3px", color:Y, marginBottom:".75rem"}}>Quick Links</div>
               {[
-                {l:"Portfolio",     u:"https://kingcontractor.com/portfolio/"}
+                {l:"Portfolio",     u:"https://kingcontractor.com/portfolio/"},
                 {l:"Contact Us",    u:"https://kingcontractor.com/contact-us/"},
               ].map(({l,u})=>(
                 <div key={l}><a href={u} target="_blank" rel="noopener"
