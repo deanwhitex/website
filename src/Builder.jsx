@@ -1297,10 +1297,12 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
                     <p style={{color:"#888", fontSize:".9rem", maxWidth:"400px", margin:"0 auto 2rem", lineHeight:1.7}}>
                       AI will write a custom headline, tagline, about section, service descriptions, 4-question FAQ, and full SEO metadata — all tailored to <strong>{biz.name || "your business"}</strong> in <strong>{biz.city || "your city"}</strong>.
                     </p>
-                    <Btn onClick={runGenerate} style={{fontSize:"1.3rem", padding:"14px 36px"}}>
-                      {Icons.wand} Generate My Website
-                    </Btn>
-                  </div>
+                    <button
+  className="btn btn-primary"
+  onClick={handleSubmit}
+>
+  PROCEED TO PAYMENT ($97)
+</button>
                 )}
 
                 {aiStatus === "loading" && (
