@@ -1,6 +1,3 @@
-App · JSX
-Copy
-
 import React, { useState, useEffect } from 'react';
 import Builder from './Builder.jsx';
 
