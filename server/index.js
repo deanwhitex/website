@@ -276,18 +276,34 @@ app.post('/api/claude/:submissionId', async (req, res) => {
   const { submissionId } = req.params;
   const apiKey = process.env.ANTHROPIC_API_KEY;
   
+  console.log('=== CLAUDE API CALL ===');
+  console.log('Submission ID:', submissionId);
+  
   if (!apiKey) {
+    console.error('ANTHROPIC_API_KEY not configured');
     return res.status(500).json({ error: { message: 'ANTHROPIC_API_KEY not configured' } });
   }
 
   // STRICT: Verify payment before allowing AI generation
   try {
+    console.log('Checking payment status for submission:', submissionId);
     const check = await pool.query('SELECT payment_status FROM submissions WHERE id = $1', [submissionId]);
-    if (check.rows.length === 0 || check.rows[0].payment_status !== 'paid') {
+    console.log('Payment check result:', check.rows);
+    
+    if (check.rows.length === 0) {
+      console.error('Submission not found:', submissionId);
+      return res.status(403).json({ error: { message: 'Submission not found' } });
+    }
+    
+    if (check.rows[0].payment_status !== 'paid') {
+      console.error('Payment not completed:', check.rows[0].payment_status);
       return res.status(403).json({ error: { message: 'Payment required to generate website' } });
     }
+    
+    console.log('Payment verified, calling Claude API...');
   } catch (err) {
-    return res.status(500).json({ error: { message: 'Database error' } });
+    console.error('Database error checking payment:', err.message, err.stack);
+    return res.status(500).json({ error: { message: 'Database error: ' + err.message } });
   }
 
   try {
