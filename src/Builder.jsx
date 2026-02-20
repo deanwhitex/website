@@ -895,7 +895,21 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
     const businessData = bizData || biz;
     const brandData = brandDataParam || brand;
     
-    console.log('runGenerate called with business:', businessData.name);
+    console.log('===== GENERATION START =====');
+    console.log('Business Data:', JSON.stringify(businessData, null, 2));
+    console.log('Brand Data:', JSON.stringify(brandData, null, 2));
+    console.log('Submission ID:', submissionId);
+    console.log('============================');
+    
+    if (!businessData.name || businessData.name === '') {
+      console.error('CRITICAL ERROR: Business data is empty!');
+      console.log('Received bizData param:', bizData);
+      console.log('Current biz state:', biz);
+      setAiStatus("error");
+      setAiLog(['Error: No business data available']);
+      setGenerating(false);
+      return;
+    }
     
     setGenerating(true);
     setAiStatus("loading");
@@ -908,7 +922,18 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
       log("Analyzing your business details...");
       await new Promise(r=>setTimeout(r,400));
       log("Crafting your hero headline & tagline...");
+      
+      console.log('Calling generateAllContent with:', {
+        businessName: businessData.name,
+        businessType: businessData.type,
+        servicesCount: businessData.services?.length,
+        submissionId: submissionId
+      });
+      
       const ai = await generateAllContent(businessData, submissionId);
+      
+      console.log('AI Content received:', ai);
+      
       if (!ai) throw new Error("Could not parse AI response");
 
       log("Writing your About Us section...");
@@ -922,12 +947,25 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
       log("Building your complete website...");
 
       setAiContent(ai);
+      
+      console.log('Calling generateHTML with:', {
+        businessName: businessData.name,
+        servicesCount: businessData.services?.length,
+        hasLogo: !!brandData.logo,
+        hasPrimaryColor: !!brandData.primary,
+        hasAiContent: !!ai
+      });
+      
       const finalHtml = generateHTML({ 
           business: { ...businessData, serviceAreas: businessData.serviceAreas }, 
           services: businessData.services || [],
           brand: brandData, 
           aiContent: ai 
         });
+        
+      console.log('HTML generated, length:', finalHtml.length);
+      console.log('HTML preview:', finalHtml.substring(0, 500));
+      
       setHtml(finalHtml);
       if (onGenerated) onGenerated(finalHtml);
       setAiStatus("done");
@@ -937,6 +975,7 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
       const msg = err.message || "Unknown error";
       log("Error: " + msg);
       console.error("Generation error:", err);
+      console.error('Error stack:', err.stack);
     }
     setGenerating(false);
   };
@@ -944,10 +983,26 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
   // Auto-generate when returning from Stripe payment
   React.useEffect(() => {
     if (autoGenerate && prefilledData && submissionId) {
-      console.log('=== AUTO-GENERATE START ===');
-      console.log('Business data:', prefilledData.business);
-      console.log('Brand data:', prefilledData.brand);
+      console.log('===== AUTO-GENERATE TRIGGERED =====');
       console.log('Submission ID:', submissionId);
+      console.log('Business data from server:');
+      console.log('  - Name:', prefilledData.business?.name);
+      console.log('  - Type:', prefilledData.business?.type);
+      console.log('  - Email:', prefilledData.business?.email);
+      console.log('  - Phone:', prefilledData.business?.phone);
+      console.log('  - Services:', prefilledData.business?.services);
+      console.log('Brand data from server:');
+      console.log('  - Has logo:', !!prefilledData.brand?.logo);
+      console.log('  - Primary color:', prefilledData.brand?.primary);
+      console.log('  - Has hero:', !!prefilledData.brand?.hero);
+      console.log('====================================');
+      
+      // Verify data is not empty
+      if (!prefilledData.business?.name) {
+        console.error('CRITICAL: Business name is missing from server data!');
+        alert('Error: Business data is incomplete. Please try again.');
+        return;
+      }
       
       // Set state for UI
       setBiz(prefilledData.business);
@@ -956,11 +1011,19 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
       
       // Call runGenerate with the data directly (don't wait for state)
       const timer = setTimeout(() => {
-        console.log('Calling runGenerate with actual data (not state)');
+        console.log('Triggering generation with direct data...');
         runGenerate(prefilledData.business, prefilledData.brand);
       }, 1500);
       
       return () => clearTimeout(timer);
+    } else {
+      if (autoGenerate) {
+        console.log('Auto-generate check:', {
+          autoGenerate,
+          hasPrefilledData: !!prefilledData,
+          hasSubmissionId: !!submissionId
+        });
+      }
     }
   }, [autoGenerate, prefilledData, submissionId]);
 
