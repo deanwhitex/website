@@ -92,7 +92,7 @@ const GALLERY_FALLBACK = {
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
     "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
     "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80"
   ],
   "HVAC": [
@@ -125,7 +125,7 @@ const GALLERY_FALLBACK = {
     "https://images.unsplash.com/photo-1585320806297-9794b3e4aaae?w=800&q=80",
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80"
+    "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80"
   ],
   "Painting": [
     "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&q=80",
@@ -141,7 +141,7 @@ const GALLERY_FALLBACK = {
     "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80"
+    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
   ],
   "Windows & Doors": [
     "https://images.unsplash.com/photo-1545259742-75a8faaa542d?w=800&q=80",
@@ -162,7 +162,7 @@ const GALLERY_FALLBACK = {
   "General Contracting": [
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
     "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
     "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80",
     "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80"
@@ -170,7 +170,7 @@ const GALLERY_FALLBACK = {
   "Pool Services": [
     "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=800&q=80",
     "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80",
-    "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80",
+    "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80",
     "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
     "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=800&q=80"
