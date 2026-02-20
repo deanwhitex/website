@@ -9,59 +9,68 @@ function Hero({ onStartBuilding }) {
     <div style={{minHeight:'100vh', background:BK, display:'flex', flexDirection:'column', position:'relative', overflow:'hidden'}}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        * { box-sizing: border-box; }
+        .hero-start-btn {
+          background: ${Y};
+          color: ${BK};
+          border: none;
+          padding: 1.25rem 3.5rem;
+          border-radius: 12px;
+          font-family: 'Inter', sans-serif;
+          font-size: 1.15rem;
+          font-weight: 700;
+          cursor: pointer;
+          box-shadow: 0 10px 40px rgba(240,196,25,0.3), 0 0 0 1px rgba(240,196,25,0.1);
+          transition: all 0.3s;
+          margin-bottom: 3rem;
+          letter-spacing: 0.02em;
+        }
+        @media (max-width: 640px) {
+          .hero-logo { height: 56px !important; }
+          .hero-header { padding: 1.25rem !important; }
+          .hero-main { padding: 0 1rem !important; }
+          .hero-start-btn { width: 100%; padding: 1.1rem 2rem; font-size: 1.05rem; }
+          .hero-footer { padding: 1.25rem !important; font-size: 0.78rem !important; }
+        }
       `}</style>
 
       {/* Gradient overlay */}
       <div style={{position:'absolute', inset:0, background:'radial-gradient(circle at 50% 20%, rgba(240,196,25,0.08) 0%, transparent 60%)', pointerEvents:'none'}}/>
-      
+
       {/* Header */}
-      <div style={{padding:'2rem', display:'flex', justifyContent:'center', position:'relative', zIndex:10}}>
-        <img src="/kc-logo.png" alt="King Contractor Agency" style={{height:'80px', width:'auto'}} />
+      <div className="hero-header" style={{padding:'2rem', display:'flex', justifyContent:'center', position:'relative', zIndex:10}}>
+        <img className="hero-logo" src="/kc-logo.png" alt="King Contractor Agency" style={{height:'80px', width:'auto'}} />
       </div>
-      
+
       {/* Main content */}
-      <div style={{flex:1, display:'flex', alignItems:'center', justifyContent:'center', padding:'0 2rem', position:'relative', zIndex:1}}>
-        <div className="hero-content" style={{textAlign:'center', maxWidth:'800px'}}>
+      <div className="hero-main" style={{flex:1, display:'flex', alignItems:'center', justifyContent:'center', padding:'0 2rem', position:'relative', zIndex:1}}>
+        <div className="hero-content" style={{textAlign:'center', maxWidth:'800px', width:'100%'}}>
           <h1 style={{
-            fontFamily:"'Inter', sans-serif", 
-            fontSize:'clamp(2.5rem, 7vw, 4.5rem)', 
-            fontWeight:'800', 
-            color:'#fff', 
-            lineHeight:1.1, 
+            fontFamily:"'Inter', sans-serif",
+            fontSize:'clamp(2.2rem, 7vw, 4.5rem)',
+            fontWeight:'800',
+            color:'#fff',
+            lineHeight:1.1,
             marginBottom:'1.5rem',
             letterSpacing:'-0.02em'
           }}>
             AI Website Generator<br/>for Contractors
           </h1>
-          
+
           <p style={{
-            color:'rgba(255,255,255,0.7)', 
-            fontSize:'clamp(1.1rem, 2.5vw, 1.35rem)', 
-            maxWidth:'600px', 
+            color:'rgba(255,255,255,0.7)',
+            fontSize:'clamp(1rem, 2.5vw, 1.35rem)',
+            maxWidth:'600px',
             margin:'0 auto 3rem',
             fontWeight:'400',
             lineHeight:1.6
           }}>
             Professional websites in 5 minutes. AI writes everything. Download HTML or get instant live URL. $97.
           </p>
-          
-          <button 
+
+          <button
+            className="hero-start-btn"
             onClick={onStartBuilding}
-            style={{
-              background:Y, 
-              color:BK, 
-              border:'none', 
-              padding:'1.25rem 3.5rem', 
-              borderRadius:'12px', 
-              fontFamily:"'Inter', sans-serif", 
-              fontSize:'1.15rem', 
-              fontWeight:'700', 
-              cursor:'pointer', 
-              boxShadow:'0 10px 40px rgba(240,196,25,0.3), 0 0 0 1px rgba(240,196,25,0.1)', 
-              transition:'all 0.3s',
-              marginBottom:'3rem',
-              letterSpacing:'0.02em'
-            }}
             onMouseEnter={(e) => {
               e.target.style.transform = 'translateY(-2px)';
               e.target.style.boxShadow = '0 15px 50px rgba(240,196,25,0.4), 0 0 0 1px rgba(240,196,25,0.2)';
@@ -73,18 +82,18 @@ function Hero({ onStartBuilding }) {
           >
             START BUILDING
           </button>
-          
+
           <div style={{
-            display:'flex', 
-            gap:'3rem', 
-            justifyContent:'center', 
+            display:'flex',
+            gap:'2rem',
+            justifyContent:'center',
             flexWrap:'wrap',
             opacity:0.6
           }}>
             {['AI-Powered', 'No Coding', 'Instant Deploy'].map((item,i)=>(
               <div key={i} style={{
-                color:'#888', 
-                fontSize:'0.9rem', 
+                color:'#888',
+                fontSize:'0.9rem',
                 fontWeight:'500',
                 letterSpacing:'0.5px',
                 textTransform:'uppercase'
@@ -95,9 +104,9 @@ function Hero({ onStartBuilding }) {
           </div>
         </div>
       </div>
-      
+
       {/* Footer info */}
-      <div style={{padding:'2rem', textAlign:'center', color:'rgba(255,255,255,0.4)', fontSize:'0.85rem', position:'relative', zIndex:10}}>
+      <div className="hero-footer" style={{padding:'2rem', textAlign:'center', color:'rgba(255,255,255,0.4)', fontSize:'0.85rem', position:'relative', zIndex:10}}>
         Professional, SEO-optimized websites for home service contractors — powered by AI
       </div>
     </div>
@@ -143,11 +152,28 @@ function Results({ html, businessName, netlifyUrl, onBuildAnother }) {
   };
 
   return (
-    <div style={{minHeight:'100vh', background:BK, padding:'2rem'}}>
-      <div style={{maxWidth:'1400px', margin:'0 auto'}}>
+    <div style={{minHeight:'100vh', background:BK}}>
+      <style>{`
+        * { box-sizing: border-box; }
+        .results-wrap { padding: 2rem; }
+        .results-tab-btn { background: none; border: none; color: #888; padding: 1rem 2rem; font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+        .results-card { padding: 3rem; }
+        .results-dl-btn { background: ${Y}; color: ${BK}; border: none; padding: 1.25rem 3rem; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 700; cursor: pointer; }
+        .results-another-btn { background: transparent; color: #fff; border: 1px solid #333; padding: 1rem 2rem; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        @media (max-width: 640px) {
+          .results-wrap { padding: 1rem; }
+          .results-h1 { font-size: clamp(1.75rem, 7vw, 3rem) !important; }
+          .results-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+          .results-tab-btn { padding: 0.75rem 1rem; font-size: 0.95rem; }
+          .results-card { padding: 1.5rem !important; }
+          .results-dl-btn { width: 100%; }
+          .results-another-btn { width: 100%; }
+        }
+      `}</style>
+      <div className="results-wrap" style={{maxWidth:'1400px', margin:'0 auto'}}>
         <div style={{textAlign:'center', marginBottom:'3rem'}}>
           <div style={{fontSize:'4rem', marginBottom:'1rem'}}>✓</div>
-          <h1 style={{fontFamily:"'Inter', sans-serif", fontSize:'3rem', fontWeight:'800', color:'#fff', marginBottom:'1rem', letterSpacing:'-0.01em'}}>
+          <h1 className="results-h1" style={{fontFamily:"'Inter', sans-serif", fontSize:'3rem', fontWeight:'800', color:'#fff', marginBottom:'1rem', letterSpacing:'-0.01em'}}>
             Your Website is Ready!
           </h1>
           <p style={{color:'#aaa', fontSize:'1.1rem'}}>Preview, download, or deploy below</p>
@@ -164,14 +190,14 @@ function Results({ html, businessName, netlifyUrl, onBuildAnother }) {
           </div>
         )}
 
-        <div style={{display:'flex', gap:'1rem', marginBottom:'2rem', borderBottom:'1px solid #222'}}>
+        <div className="results-tabs" style={{display:'flex', gap:'0', marginBottom:'2rem', borderBottom:'1px solid #222'}}>
           {[
             {id:'preview', label:'Preview'},
             {id:'download', label:'Download'},
             {id:'deploy', label:'Deploy Guide'}
           ].map(t=>(
-            <button key={t.id} onClick={()=>setTab(t.id)}
-              style={{background:'none', border:'none', borderBottom: tab===t.id ? `3px solid ${Y}` : 'none', color: tab===t.id ? Y : '#888', padding:'1rem 2rem', fontFamily:"'Inter', sans-serif", fontSize:'1.1rem', fontWeight:'600', cursor:'pointer', transition:'all 0.2s'}}>
+            <button key={t.id} className="results-tab-btn" onClick={()=>setTab(t.id)}
+              style={{borderBottom: tab===t.id ? `3px solid ${Y}` : 'none', color: tab===t.id ? Y : '#888'}}>
               {t.label}
             </button>
           ))}
@@ -182,18 +208,18 @@ function Results({ html, businessName, netlifyUrl, onBuildAnother }) {
         )}
 
         {tab === 'download' && (
-          <div style={{background:'#111', border:'1px solid #222', borderRadius:'8px', padding:'3rem', maxWidth:'700px', margin:'0 auto', textAlign:'center'}}>
+          <div className="results-card" style={{background:'#111', border:'1px solid #222', borderRadius:'8px', padding:'3rem', maxWidth:'700px', margin:'0 auto', textAlign:'center'}}>
             <div style={{fontSize:'4rem', marginBottom:'1rem'}}>📥</div>
             <h2 style={{fontFamily:"'Inter', sans-serif", fontSize:'2rem', color:'#fff', marginBottom:'1rem', fontWeight:'700'}}>Download HTML</h2>
             <p style={{color:'#aaa', fontSize:'1rem', marginBottom:'2rem'}}>Get the complete HTML file. Host anywhere.</p>
-            <button onClick={downloadHTML} style={{background:Y, color:BK, border:'none', padding:'1.25rem 3rem', borderRadius:'8px', fontFamily:"'Inter', sans-serif", fontSize:'1.15rem', fontWeight:'700', cursor:'pointer'}}>
+            <button className="results-dl-btn" onClick={downloadHTML}>
               DOWNLOAD HTML
             </button>
           </div>
         )}
 
         {tab === 'deploy' && (
-          <div style={{background:'#111', border:'1px solid #222', borderRadius:'8px', padding:'3rem', maxWidth:'800px', margin:'0 auto'}}>
+          <div className="results-card" style={{background:'#111', border:'1px solid #222', borderRadius:'8px', padding:'3rem', maxWidth:'800px', margin:'0 auto'}}>
             <h2 style={{fontFamily:"'Inter', sans-serif", fontSize:'2rem', color:'#fff', marginBottom:'2rem', fontWeight:'700'}}>Deployment Options</h2>
             {[
               {title: 'Option 1: Netlify (Free)', steps: ['Go to app.netlify.com/drop', 'Drag your HTML file', 'Get instant live URL']},
@@ -211,7 +237,7 @@ function Results({ html, businessName, netlifyUrl, onBuildAnother }) {
         )}
 
         <div style={{textAlign:'center', marginTop:'3rem', paddingTop:'3rem', borderTop:'1px solid #222'}}>
-          <button onClick={onBuildAnother} style={{background:'transparent', color:'#fff', border:'1px solid #333', padding:'1rem 2rem', borderRadius:'8px', fontFamily:"'Inter', sans-serif", fontSize:'1.05rem', fontWeight:'600', cursor:'pointer', transition:'all 0.2s'}}>
+          <button className="results-another-btn" onClick={onBuildAnother}>
             BUILD ANOTHER ($97)
           </button>
         </div>
