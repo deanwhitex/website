@@ -261,7 +261,7 @@ const SVC_IMG_MAP = {
 };
 function getSvcImg(svcName, bizType) {
   const exact = SVC_IMG_MAP[svcName];
-  if (exact) return \`https://images.unsplash.com/\${exact}?w=600&q=75&fit=crop\`;
+  if (exact) return `https://images.unsplash.com/${exact}?w=600&q=75&fit=crop`;
   // Fallback: use industry hero image
   return FALLBACK[bizType] || FALLBACK["General Contracting"];
 }
