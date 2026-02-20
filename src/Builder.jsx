@@ -155,24 +155,49 @@ ${svcKeys}
   "trustStatement": "one sentence mentioning license, years, and guarantee"
 }`;
 
+  console.log('Sending prompt to Claude API...');
   const raw = await callClaude(prompt, submissionId);
+  console.log('Raw AI response:', raw.substring(0, 500));
+  
   const result = extractJSON(raw);
 
   if (!result) {
     throw new Error("AI returned an unparseable response. Please try again.");
   }
 
-  // Ensure serviceDescriptions always exists
-  if (!result.serviceDescriptions || typeof result.serviceDescriptions !== "object") {
-    result.serviceDescriptions = {};
-  }
+  console.log('Parsed AI result:', result);
+  console.log('Service descriptions from AI:', result.serviceDescriptions);
+
+  // Ensure all required fields exist with fallbacks
+  const finalResult = {
+    heroHeadline: result.heroHeadline || `${biz.name.toUpperCase()}`,
+    heroSub: result.heroSub || biz.tagline || `Professional ${biz.type} services in ${biz.city}`,
+    aboutParagraph: result.aboutParagraph || biz.description,
+    serviceDescriptions: result.serviceDescriptions || {},
+    faq: result.faq || [
+      {q: "Are you licensed and insured?", a: `Yes, ${biz.name} is fully licensed and insured in ${biz.state}.`},
+      {q: "Do you offer free estimates?", a: "Absolutely. We provide free, no-obligation estimates for all projects."},
+      {q: "How quickly can you respond?", a: `We typically respond within 24 hours.${biz.emergency ? " For emergencies, we're available 24/7." : ""}`},
+      {q: "What areas do you serve?", a: `We proudly serve ${biz.city} and surrounding areas in ${biz.state}.`}
+    ],
+    seoTitle: result.seoTitle || `${biz.name} | ${biz.type} in ${biz.city}`,
+    seoDesc: result.seoDesc || biz.description.slice(0, 160),
+    seoKeywords: result.seoKeywords || `${biz.type}, ${biz.city}, ${biz.state}`,
+    ctaHeadline: result.ctaHeadline || "Ready to Get Started?",
+    trustStatement: result.trustStatement || `Licensed and insured ${biz.type.toLowerCase()} contractor serving ${biz.city}.`
+  };
+
+  // Fill in missing service descriptions
+  console.log('Filling service descriptions...');
   biz.services.forEach(s => {
-    if (!result.serviceDescriptions[s]) {
-      result.serviceDescriptions[s] = `Expert ${s.toLowerCase()} services delivered with precision, quality materials, and a written satisfaction guarantee.`;
+    if (!finalResult.serviceDescriptions[s] || finalResult.serviceDescriptions[s] === '') {
+      console.log(`Adding fallback for service: ${s}`);
+      finalResult.serviceDescriptions[s] = `Expert ${s.toLowerCase()} services delivered with precision, quality materials, and a written satisfaction guarantee.`;
     }
   });
 
-  return result;
+  console.log('Final AI content:', finalResult);
+  return finalResult;
 }
 
 // ─── HTML Generator ─────────────────────────────────────────────────────────────
