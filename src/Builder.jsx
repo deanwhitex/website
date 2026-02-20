@@ -809,7 +809,7 @@ function In({ value, onChange, placeholder, type="text", maxLength, style={} }) 
       onFocus={()=>setF(true)} onBlur={()=>setF(false)}
       style={{ width:"100%", padding:"10px 12px", background:"#fff", color:"#111",
         border:`1.5px solid ${f?Y:"#d1d5db"}`, borderRadius:"3px",
-        fontSize:".9rem", fontFamily:"inherit", outline:"none", transition:"border-color .15s",
+        fontSize:"1rem", fontFamily:"inherit", outline:"none", transition:"border-color .15s",
         boxShadow: f?`0 0 0 3px rgba(240,196,25,.1)`:"none", boxSizing:"border-box", ...style }} />
   );
 }
@@ -821,7 +821,7 @@ function Ta({ value, onChange, placeholder, rows=3, maxLength }) {
       onFocus={()=>setF(true)} onBlur={()=>setF(false)}
       style={{ width:"100%", padding:"10px 12px", background:"#fff", color:"#111",
         border:`1.5px solid ${f?Y:"#d1d5db"}`, borderRadius:"3px",
-        fontSize:".9rem", fontFamily:"inherit", outline:"none", resize:"vertical",
+        fontSize:"1rem", fontFamily:"inherit", outline:"none", resize:"vertical",
         transition:"border-color .15s", boxShadow:f?`0 0 0 3px rgba(240,196,25,.1)`:"none",
         boxSizing:"border-box" }} />
   );
@@ -1186,65 +1186,66 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
         ::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:3px}
         ::-webkit-scrollbar-thumb:hover{background:${Y}}
         .kfade{animation:kfade .3s ease-out}
-        
-        /* Mobile Responsive Fixes */
+
+        /* ── Layout utility classes ── */
+        .util-bar{}
+        .nav-links-wrap{display:flex;gap:22px;align-items:center}
+        .nav-text-link{}
+        .builder-hero{padding:3.5rem 2rem 3rem}
+        .builder-outer{padding:2rem 2rem 4rem}
+        .builder-card{padding:1.75rem;box-sizing:border-box}
+        .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+        .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+        .g2-sm{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+        .footer-grid-cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
+        .step4-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.5rem}
+
+        /* ── Mobile: ≤768px ── */
         @media (max-width: 768px) {
-          /* Hide sidebar on mobile */
-          .builder-container > div:first-child {
-            display: none !important;
-          }
-          
-          /* Stack grids on mobile */
-          [style*="grid-template-columns: 1fr 1fr"],
-          [style*="grid-template-columns: 1fr 1fr 1fr"] {
-            grid-template-columns: 1fr !important;
-          }
-          
-          /* Reduce card padding on mobile */
-          [style*="padding: 1.75rem"] {
-            padding: 1.25rem !important;
-          }
-          
-          /* Make service cards single column */
-          [style*="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr))"],
-          [style*="grid-template-columns: repeat(auto-fill, minmax(210px, 1fr))"] {
-            grid-template-columns: 1fr !important;
-          }
-          
-          /* Reduce nav padding */
-          nav[style*="padding: 0 2rem"] {
-            padding: 0 1rem !important;
-          }
-          
-          /* Hide nav links on mobile */
-          nav > div > div:last-child > a:not(:last-child) {
-            display: none !important;
-          }
-          
-          /* Stack hero badges */
-          .hero-badges {
-            flex-direction: column !important;
-            gap: 0.5rem !important;
-          }
+          /* Hide util bar to save vertical space */
+          .util-bar { display: none !important; }
+
+          /* Hide sidebar */
+          .builder-container > div:first-child { display: none !important; }
+
+          /* Nav: reduce padding, hide text links */
+          .builder-nav { padding: 0 1rem !important; height: 56px !important; }
+          .nav-text-link { display: none !important; }
+
+          /* Builder hero: less vertical padding */
+          .builder-hero { padding: 1.75rem 1rem 1.25rem !important; }
+
+          /* Builder outer wrapper: tighter padding */
+          .builder-outer { padding: 1rem 0.75rem 3rem !important; }
+
+          /* Card: tighter padding */
+          .builder-card { padding: 1.25rem !important; }
+
+          /* Stack 2- and 3-column grids to single column */
+          .g2, .g3, .g2-sm { grid-template-columns: 1fr !important; }
+
+          /* Footer: stack columns */
+          .footer-grid-cols { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+
+          /* Step 4 action buttons: stack vertically, full width */
+          .step4-actions { flex-direction: column !important; }
+          .step4-actions > * { width: 100% !important; justify-content: center !important; text-align: center !important; box-sizing: border-box !important; }
+
+          /* Trust strip: remove dividers that break layout */
+          .trust-item { border-right: none !important; padding: 4px 14px !important; }
         }
-        
+
+        /* ── Mobile: ≤480px ── */
         @media (max-width: 480px) {
-          /* Even smaller padding on very small screens */
-          [style*="padding: 1.25rem"] {
-            padding: 1rem !important;
-          }
-          
-          /* Make buttons full width on very small screens */
-          button[style*="padding: 14px 36px"],
-          button[style*="padding: 12px 20px"] {
-            width: 100% !important;
-            justify-content: center !important;
-          }
+          .builder-card { padding: 0.875rem !important; }
+          .builder-hero { padding: 1.25rem 0.75rem 1rem !important; }
+          /* Payment button: full width */
+          .btn-pay { width: 100% !important; justify-content: center !important; }
         }
       `}</style>
 
       {/* ── Top util bar ── */}
-      <div style={{background:"#060606", borderBottom:"1px solid #111", padding:"7px 2rem", display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+      <div className="util-bar" style={{background:"#060606", borderBottom:"1px solid #111", padding:"7px 2rem", display:"flex", justifyContent:"space-between", alignItems:"center"}}>
         <div style={{display:"flex", gap:"14px", alignItems:"center"}}>
           {[
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>,
@@ -1262,15 +1263,15 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
       </div>
 
       {/* ── Nav ── */}
-      <nav style={{background:"#0c0c0c", height:"66px", display:"flex", justifyContent:"space-between", alignItems:"center", padding:"0 2rem", position:"sticky", top:0, zIndex:100, borderBottom:"1px solid #1e1e1e"}}>
+      <nav className="builder-nav" style={{background:"#0c0c0c", height:"66px", display:"flex", justifyContent:"space-between", alignItems:"center", padding:"0 2rem", position:"sticky", top:0, zIndex:100, borderBottom:"1px solid #1e1e1e"}}>
         <img src={KC_LOGO} alt="King Contractor Agency" style={{height:"48px", width:"auto"}} />
-        <div style={{display:"flex", gap:"22px", alignItems:"center"}}>
+        <div className="nav-links-wrap" style={{display:"flex", gap:"22px", alignItems:"center"}}>
           {[
             {l:"Portfolio",    u:"https://kingcontractor.com/portfolio/"},
             {l:"SEO",          u:"https://kingcontractor.com/roofing-seo-for-contractors/"},
             {l:"Contact",      u:"https://kingcontractor.com/contact-us/"},
           ].map(({l,u})=>(
-            <a key={l} href={u} target="_blank" rel="noopener"
+            <a key={l} href={u} target="_blank" rel="noopener" className="nav-text-link"
               style={{fontFamily:"'Barlow Condensed',sans-serif", fontWeight:700, fontSize:".9rem", letterSpacing:".5px", color:"#aaa", textDecoration:"none", textTransform:"uppercase", transition:"color .2s"}}
               onMouseEnter={e=>e.currentTarget.style.color=Y}
               onMouseLeave={e=>e.currentTarget.style.color="#aaa"}>{l}</a>
@@ -1285,7 +1286,7 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
       </nav>
 
       {/* ── Hero ── */}
-      <div style={{background:"#080808", padding:"3.5rem 2rem 3rem", textAlign:"center", borderBottom:"1px solid #111"}}>
+      <div className="builder-hero" style={{background:"#080808", padding:"3.5rem 2rem 3rem", textAlign:"center", borderBottom:"1px solid #111"}}>
         <div style={{maxWidth:"720px", margin:"0 auto"}}>
           <div style={{display:"inline-flex", alignItems:"center", gap:"10px", marginBottom:"16px"}}>
             <div style={{width:"20px", height:"2px", background:Y}} />
@@ -1302,21 +1303,21 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
       </div>
 
       {/* ── Builder ── */}
-      <div style={{maxWidth:"1100px", margin:"0 auto", padding:"2rem 2rem 4rem"}}>
+      <div className="builder-outer" style={{maxWidth:"1100px", margin:"0 auto", padding:"2rem 2rem 4rem"}}>
         <div style={{display:"flex", gap:"2.5rem", alignItems:"flex-start"}} className="builder-container">
 
           {/* Sidebar */}
           <Sidebar step={step} />
 
           {/* Card */}
-          <div style={card} className="kfade">
+          <div style={card} className="kfade builder-card">
 
             {/* ── STEP 1: Business Info ── */}
             {step===1 && (
               <div>
                 <SectionHead step={1} title="Business Information" subtitle="Your details power every section of the generated website." />
 
-                <div style={g2}>
+                <div style={g2} className="g2">
                   <FieldWrap label="Business Name" required><In value={biz.name} onChange={e=>upd({name:e.target.value})} placeholder="Elite Roofing Co." /></FieldWrap>
                   <FieldWrap label="Years in Business"><In value={biz.years} onChange={e=>upd({years:e.target.value})} placeholder="12" type="number" /></FieldWrap>
                 </div>
@@ -1336,16 +1337,16 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
                   <In value={biz.tagline} onChange={e=>upd({tagline:e.target.value})} placeholder="Trusted by Orlando Homeowners Since 2009" />
                 </FieldWrap>
 
-                <div style={g2}>
+                <div style={g2} className="g2">
                   <FieldWrap label="Phone" required><In value={biz.phone} onChange={e=>upd({phone:e.target.value})} placeholder="(407) 555-1234" type="tel" /></FieldWrap>
                   <FieldWrap label="Email" required><In value={biz.email} onChange={e=>upd({email:e.target.value})} placeholder="info@yourcompany.com" type="email" /></FieldWrap>
                 </div>
-                <div style={g3}>
+                <div style={g3} className="g3">
                   <FieldWrap label="City" required><In value={biz.city} onChange={e=>upd({city:e.target.value})} placeholder="Orlando" /></FieldWrap>
                   <FieldWrap label="State" required><In value={biz.state} onChange={e=>upd({state:e.target.value.toUpperCase().slice(0,2)})} placeholder="FL" /></FieldWrap>
                   <FieldWrap label="ZIP"><In value={biz.zip} onChange={e=>upd({zip:e.target.value})} placeholder="32801" /></FieldWrap>
                 </div>
-                <div style={g2}>
+                <div style={g2} className="g2">
                   <FieldWrap label="Street Address"><In value={biz.address} onChange={e=>upd({address:e.target.value})} placeholder="123 Main St" /></FieldWrap>
                   <FieldWrap label="Service Radius (miles)"><In value={biz.radius} onChange={e=>upd({radius:e.target.value})} placeholder="30" type="number" /></FieldWrap>
                 </div>
@@ -1400,7 +1401,7 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
                 </FieldWrap>
 
                 <FieldWrap label="Additional Offerings">
-                  <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"6px"}}>
+                  <div className="g2-sm" style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"6px"}}>
                     <Chip label="24/7 Emergency Service" active={biz.emergency} onClick={()=>upd({emergency:!biz.emergency})} />
                     <Chip label="Financing Available" active={biz.financing} onClick={()=>upd({financing:!biz.financing})} />
                   </div>
@@ -1501,13 +1502,13 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
                     <p style={{color:"#888", fontSize:".9rem", maxWidth:"460px", margin:"0 auto 2rem", lineHeight:1.7}}>
                       Once payment is complete, AI will write a custom headline, tagline, about section, service descriptions, 4-question FAQ, and full SEO metadata — all tailored to <strong>{biz.name || "your business"}</strong> in <strong>{biz.city || "your city"}</strong>.
                     </p>
-                    <Btn 
+                    <Btn
                       onClick={() => {
                         if (onFormComplete) {
                           onFormComplete({ business: biz, brand: brand });
                         }
-                      }} 
-                      style={{fontSize:"1.3rem", padding:"14px 36px"}}
+                      }}
+                      style={{fontSize:"1.3rem", padding:"14px 36px", width:"100%", justifyContent:"center"}}
                     >
                       PROCEED TO PAYMENT ($97)
                     </Btn>
@@ -1559,7 +1560,7 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
                     </div>
 
                     {/* Action buttons */}
-                    <div style={{display:"flex", gap:"10px", flexWrap:"wrap", marginBottom:"1.5rem"}}>
+                    <div className="step4-actions" style={{display:"flex", gap:"10px", flexWrap:"wrap", marginBottom:"1.5rem"}}>
                       <Btn onClick={()=>setPreview(v=>!v)}>{Icons.eye} {preview?"Hide":"Preview"}</Btn>
                       <Btn onClick={download}>{Icons.dl} Download HTML</Btn>
                       <Btn outline onClick={runGenerate}>{Icons.wand} Regenerate</Btn>
@@ -1613,7 +1614,7 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
             {icon:"🔒", text:"Money-Back Guarantee"},
             {icon:"📍", text:"Serving All 50 States"},
           ].map(({icon,text},i)=>(
-            <div key={i} style={{display:"flex", alignItems:"center", gap:"8px", padding:"6px 28px",
+            <div key={i} className="trust-item" style={{display:"flex", alignItems:"center", gap:"8px", padding:"6px 28px",
               borderRight: i<4 ? "1px solid #1e1e1e" : "none"}}>
               <span style={{fontSize:".9rem", lineHeight:1}}>{icon}</span>
               <span style={{fontFamily:"'Barlow Condensed',sans-serif", fontWeight:700, fontSize:".78rem", letterSpacing:"1.5px", textTransform:"uppercase", color:"#666"}}>{text}</span>
@@ -1625,7 +1626,7 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
       {/* ── Footer ── */}
       <footer style={{background:"#050505", borderTop:`2px solid ${Y}`, padding:"2.75rem 2rem 1.75rem"}}>
         <div style={{maxWidth:"1080px", margin:"0 auto"}}>
-          <div style={{display:"grid", gridTemplateColumns:"1.4fr 1fr 1fr", gap:"2rem", marginBottom:"2rem"}}>
+          <div className="footer-grid-cols" style={{display:"grid", gridTemplateColumns:"1.4fr 1fr 1fr", gap:"2rem", marginBottom:"2rem"}}>
             <div>
               <img src={KC_LOGO} alt="King Contractor Agency" style={{height:"44px", width:"auto", marginBottom:"1rem"}} />
               <p style={{color:"#888", fontSize:".85rem", lineHeight:1.8, maxWidth:"280px"}}>America's best home service website builder. Professional, AI-powered websites that convert visitors into customers.</p>
