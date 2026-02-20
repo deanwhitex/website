@@ -19,7 +19,7 @@ const pool = new Pool({
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 });
 
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '50mb' }));
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
 app.get('/api/health', async (req, res) => {
@@ -191,31 +191,11 @@ app.get('/api/verify-payment/:sessionId', async (req, res) => {
 
     console.log('Payment verified successfully for submission:', submissionId);
 
-    // Safely parse JSON fields
-    let parsedServices = [];
-    let parsedCerts = [];
-    let parsedPhotos = [];
-    
-    try {
-      parsedServices = sub.services ? JSON.parse(sub.services) : [];
-    } catch (err) {
-      console.error('Failed to parse services:', sub.services, err);
-      parsedServices = [];
-    }
-    
-    try {
-      parsedCerts = sub.certifications ? JSON.parse(sub.certifications) : [];
-    } catch (err) {
-      console.error('Failed to parse certifications:', sub.certifications, err);
-      parsedCerts = [];
-    }
-    
-    try {
-      parsedPhotos = sub.photos ? JSON.parse(sub.photos) : [];
-    } catch (err) {
-      console.error('Failed to parse photos:', sub.photos, err);
-      parsedPhotos = [];
-    }
+    // JSONB columns (services, certifications, photos) are automatically parsed
+    // by the pg library into JavaScript arrays — do not call JSON.parse on them.
+    const parsedServices = Array.isArray(sub.services) ? sub.services : [];
+    const parsedCerts = Array.isArray(sub.certifications) ? sub.certifications : [];
+    const parsedPhotos = Array.isArray(sub.photos) ? sub.photos : [];
     
     console.log('Parsed data:', {
       services: parsedServices,
