@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Builder from './Builder.jsx';
 
 const Y = "#F0C419";
-const BK = "#0C0C0C";
+const BK = "#000000";
 
 function Hero({ onStartBuilding }) {
   return (
-    <div style={{minHeight:'100vh', background:#000000, display:'flex', flexDirection:'column', position:'relative', overflow:'hidden'}}>
+    <div style={{minHeight:'100vh', background:'#000000', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden'}}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
         * { box-sizing: border-box; }
