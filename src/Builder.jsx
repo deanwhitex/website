@@ -89,7 +89,7 @@ const FALLBACK = {
 const GALLERY_FALLBACK = {
   "Roofing": [
     "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
     "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
@@ -125,7 +125,7 @@ const GALLERY_FALLBACK = {
     "https://images.unsplash.com/photo-1585320806297-9794b3e4aaae?w=800&q=80",
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80"
   ],
   "Painting": [
     "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&q=80",
@@ -141,14 +141,14 @@ const GALLERY_FALLBACK = {
     "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80"
   ],
   "Windows & Doors": [
     "https://images.unsplash.com/photo-1545259742-75a8faaa542d?w=800&q=80",
     "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80",
     "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
     "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
   ],
   "Solar Installation": [
@@ -162,14 +162,14 @@ const GALLERY_FALLBACK = {
   "General Contracting": [
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
     "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
     "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80",
     "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80"
   ],
   "Pool Services": [
     "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80",
+    "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80",
     "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80",
     "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
@@ -178,7 +178,7 @@ const GALLERY_FALLBACK = {
   "Pest Control": [
     "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
     "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
     "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
     "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80"
@@ -343,6 +343,7 @@ function buildHTML({ biz, brand, ai }) {
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+section{scroll-margin-top:80px}
 :root{--y:${gold};--dark:${dark};--card:#111;--border:#1e1e1e;--text:#ddd;--muted:#777}
 body{font-family:'Barlow',sans-serif;background:var(--dark);color:var(--text);-webkit-font-smoothing:antialiased}
 a{text-decoration:none;color:inherit}img{display:block;max-width:100%}
@@ -453,9 +454,11 @@ section{padding:5.5rem 0}
 
 /* FAQ */
 .faq-list{display:grid;gap:.875rem;max-width:820px;margin:0 auto}
-.faq-item{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.75rem 2rem}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.75rem 2rem;cursor:pointer}
 .faq-q{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.5px;color:#fff;margin-bottom:.625rem}
-.faq-a{color:#777;line-height:1.8;font-size:.9rem}
+.faq-a{color:#777;line-height:1.8;font-size:.9rem;display:none}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-q{color:var(--y)}
 
 /* reverse ticker */
 .ticker-rev .ticker-track{animation-direction:reverse}
@@ -493,12 +496,12 @@ textarea.f-in{min-height:120px;resize:vertical}
 .footer{background:#050505;border-top:2px solid var(--y);padding:4rem 0 2rem}
 .footer-grid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:2.5rem;margin-bottom:3rem}
 .footer h4{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:3px;color:var(--y);margin-bottom:1rem}
-.footer p,.footer li{color:#3a3a3a;line-height:2.1;font-size:.85rem}
-.footer a{color:#3a3a3a;transition:color .2s}
+.footer p,.footer li{color:#888;line-height:2.1;font-size:.85rem}
+.footer a{color:#888;transition:color .2s}
 .footer a:hover{color:var(--y)}
 .footer ul{list-style:none;padding:0}
 .footer-bottom{border-top:1px solid #0f0f0f;padding-top:1.75rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-bottom span,.footer-bottom a{color:#222;font-size:.78rem}
+.footer-bottom span,.footer-bottom a{color:#555;font-size:.78rem}
 
 @media(max-width:900px){
   .about-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
@@ -511,7 +514,7 @@ textarea.f-in{min-height:120px;resize:vertical}
 
 <nav class="nav">
   <div class="nav-inner">
-    ${brand.logo ? `<img src="${brand.logo}" alt="${biz.name}" style="height:46px;width:auto">` : `<div class="nav-logo">${biz.name.split(' ').map((w,i)=>i===0?`<span>${w}</span>`:w).join(' ')}</div>`}
+    ${brand.logo ? `<img src="${brand.logo}" alt="${biz.name}" style="height:46px;width:auto;mix-blend-mode:multiply">` : `<div class="nav-logo">${biz.name.split(' ').map((w,i)=>i===0?`<span>${w}</span>`:w).join(' ')}</div>`}
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
@@ -537,7 +540,7 @@ textarea.f-in{min-height:120px;resize:vertical}
   <div class="hero-shade"></div>
   <div class="hero-body">
     <div class="hero-pill">Serving ${biz.city}, ${biz.state}</div>
-    <h1>${heroHeadline}<em>${biz.type}</em></h1>
+    <h1>${heroHeadline}</h1>
     <p class="hero-sub">${heroSub}</p>
     <div class="hero-btns">
       <a href="tel:${biz.phone.replace(/\D/g,'')}" class="btn-gold">Get Free Estimate</a>
@@ -762,6 +765,22 @@ ${biz.serviceAreas ? `
   </div>
 </footer>
 
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(function(item) {
+    item.addEventListener('click', function() {
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Sticky nav shadow on scroll
+  var nav = document.querySelector('.nav');
+  window.addEventListener('scroll', function() {
+    nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,.5)' : 'none';
+  }, { passive: true });
+</script>
 </body>
 </html>`;
 }
