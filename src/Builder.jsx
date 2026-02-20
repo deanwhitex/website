@@ -1,6 +1,4 @@
 import React, { useState, useCallback } from "react";
-import { buildMarketingPrompt, parseAIResponse } from './aiPrompts.js';
-import { generateHTML } from './htmlGenerator.js';
 
 
 // ─── Logo ──────────────────────────────────────────────────────────────────────
@@ -88,6 +86,105 @@ const FALLBACK = {
   "Pest Control":"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80",
 };
 
+const GALLERY_FALLBACK = {
+  "Roofing": [
+    "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80"
+  ],
+  "HVAC": [
+    "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&q=80",
+    "https://images.unsplash.com/photo-1621905252472-178c8d6890b4?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
+    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80"
+  ],
+  "Plumbing": [
+    "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=800&q=80",
+    "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
+    "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=800&q=80",
+    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+  ],
+  "Electrical": [
+    "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80",
+    "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80",
+    "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
+    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
+  ],
+  "Landscaping": [
+    "https://images.unsplash.com/photo-1558904541-efa843a96f01?w=800&q=80",
+    "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80",
+    "https://images.unsplash.com/photo-1585320806297-9794b3e4aaae?w=800&q=80",
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+  ],
+  "Painting": [
+    "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&q=80",
+    "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80"
+  ],
+  "Flooring": [
+    "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+  ],
+  "Windows & Doors": [
+    "https://images.unsplash.com/photo-1545259742-75a8faaa542d?w=800&q=80",
+    "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80",
+    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
+  ],
+  "Solar Installation": [
+    "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80",
+    "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80",
+    "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=800&q=80",
+    "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=800&q=80"
+  ],
+  "General Contracting": [
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
+    "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80"
+  ],
+  "Pool Services": [
+    "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80",
+    "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80",
+    "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=800&q=80"
+  ],
+  "Pest Control": [
+    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
+    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
+    "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80"
+  ]
+};
+
 // ─── Claude API call ────────────────────────────────────────────────────────────
 async function callClaude(prompt, submissionId) {
   const res = await fetch(`/api/claude/${submissionId}`, {
@@ -119,40 +216,48 @@ function extractJSON(raw) {
 async function generateAllContent(biz, submissionId) {
   const svcList = biz.services.slice(0, 8).join(", ");
   const svcKeys = biz.services.slice(0, 8)
-    .map(s => `    "${s}": "one compelling sentence"`)
+    .map(s => `    "${s}": "2 compelling sentences about this specific service focusing on customer benefits and results"`)
     .join(",\n");
+  const certList = biz.certs && biz.certs.length > 0 ? biz.certs.join(", ") : "none listed";
+  const serviceAreasList = biz.serviceAreas ? biz.serviceAreas : `${biz.city} and surrounding areas`;
+  const fullAddress = biz.address ? `${biz.address}, ${biz.city}, ${biz.state} ${biz.zip || ""}`.trim() : `${biz.city}, ${biz.state}`;
 
   const prompt = `Generate website copy for this home service business. Output a single raw JSON object only — no markdown, no explanation.
 
 Business name: ${biz.name}
 Service type: ${biz.type}
+Tagline: ${biz.tagline || ""}
 City, State: ${biz.city}, ${biz.state}
+Full address: ${fullAddress}
 Years in business: ${biz.years || "several years"}
 Description: ${biz.description}
-Services: ${svcList}
-Emergency service: ${biz.emergency ? "yes" : "no"}
+Services offered: ${svcList}
+Certifications & credentials: ${certList}
+Service areas: ${serviceAreasList}
+Emergency service: ${biz.emergency ? "yes — available 24/7" : "no"}
 Financing available: ${biz.financing ? "yes" : "no"}
-Warranty: ${biz.warranty || "standard warranty"}
+Warranty: ${biz.warranty || "standard workmanship warranty"}
 
 Required JSON structure:
 {
   "heroHeadline": "3-5 word ALL CAPS punchy headline (not the business name)",
   "heroSub": "one compelling sentence under 12 words explaining why customers choose them",
-  "aboutParagraph": "two short paragraphs (newline between them), warm and local, 80-100 words total",
+  "aboutParagraph": "two short paragraphs (newline between them), warm and local, 80-100 words total — naturally weave in certifications, years, and city name",
   "serviceDescriptions": {
 ${svcKeys}
   },
   "faq": [
-    {"q": "Are you licensed and insured?", "a": "specific two-sentence answer"},
+    {"q": "Are you licensed and insured?", "a": "specific two-sentence answer referencing certifications if listed"},
     {"q": "Do you offer free estimates?", "a": "specific two-sentence answer"},
-    {"q": "How quickly can you respond?", "a": "specific two-sentence answer mentioning emergency if applicable"},
-    {"q": "What areas do you serve?", "a": "specific two-sentence answer mentioning the city and nearby areas"}
+    {"q": "How quickly can you respond?", "a": "specific two-sentence answer mentioning 24/7 emergency if applicable"},
+    {"q": "What areas do you serve?", "a": "specific two-sentence answer listing the service areas provided"},
+    {"q": "What warranty do you provide on your work?", "a": "specific two-sentence answer about warranty and quality guarantee"}
   ],
   "seoTitle": "under 60 chars: Business Name | #1 Type in City, ST",
   "seoDesc": "150-160 chars for Google including city, type, and key benefit",
-  "seoKeywords": "10 comma-separated local search keywords",
+  "seoKeywords": "10 comma-separated local search keywords including city and service type",
   "ctaHeadline": "urgent call-to-action headline, max 7 words",
-  "trustStatement": "one sentence mentioning license, years, and guarantee"
+  "trustStatement": "one sentence mentioning license/certifications, years of experience, and guarantee"
 }`;
 
   console.log('Sending prompt to Claude API...');
@@ -206,6 +311,10 @@ function buildHTML({ biz, brand, ai }) {
   const gold = brand.primary || Y;
   const dark = brand.secondary || BK;
   const sdata = SVC_DATA[biz.type] || { items: biz.services, certs: [] };
+  const galleryPhotos = (brand.photos && brand.photos.length > 0)
+    ? brand.photos
+    : (GALLERY_FALLBACK[biz.type] || GALLERY_FALLBACK["General Contracting"]);
+  const isStockGallery = !(brand.photos && brand.photos.length > 0);
 
   const heroHeadline = ai?.heroHeadline || `${biz.name.toUpperCase()}`;
   const heroSub = ai?.heroSub || biz.tagline;
@@ -406,7 +515,7 @@ textarea.f-in{min-height:120px;resize:vertical}
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
-      ${brand.photos && brand.photos.length > 0 ? `<li><a href="#gallery">Gallery</a></li>` : ''}
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -507,17 +616,16 @@ textarea.f-in{min-height:120px;resize:vertical}
   </div>
 </section>
 
-${brand.photos && brand.photos.length > 0 ? `
 <section id="gallery" style="background:#0a0a0a">
   <div class="w">
     <div class="eyebrow">Portfolio</div>
     <h2 class="sec-title">Our Work</h2>
-    <p class="sec-sub">Real projects. Real results. Right here in ${biz.city}.</p>
+    <p class="sec-sub">${isStockGallery ? `Professional ${biz.type.toLowerCase()} work — quality you can count on.` : `Real projects. Real results. Right here in ${biz.city}.`}</p>
     <div class="gal-grid">
-      ${brand.photos.map((p,i)=>`<div class="gal-item"><img src="${p}" alt="${biz.type} project ${i+1}" loading="lazy"></div>`).join('')}
+      ${galleryPhotos.map((p,i)=>`<div class="gal-item"><img src="${p}" alt="${biz.type} project ${i+1}" loading="lazy"></div>`).join('')}
     </div>
   </div>
-</section>` : ''}
+</section>
 
 <section>
   <div class="w">
@@ -973,20 +1081,15 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
 
       setAiContent(ai);
       
-      console.log('Calling generateHTML with:', {
+      console.log('Calling buildHTML with:', {
         businessName: businessData.name,
         servicesCount: businessData.services?.length,
         hasLogo: !!brandData.logo,
         hasPrimaryColor: !!brandData.primary,
         hasAiContent: !!ai
       });
-      
-      const finalHtml = generateHTML({ 
-          business: { ...businessData, serviceAreas: businessData.serviceAreas }, 
-          services: businessData.services || [],
-          brand: brandData, 
-          aiContent: ai 
-        });
+
+      const finalHtml = buildHTML({ biz: businessData, brand: brandData, ai });
         
       console.log('HTML generated, length:', finalHtml.length);
       console.log('HTML preview:', finalHtml.substring(0, 500));

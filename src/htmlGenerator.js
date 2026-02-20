@@ -55,8 +55,8 @@ export function generateHTML({ business, services, brand, aiContent }) {
   const servicesHtml = services.map((s, i) => `
     <div class="service-card" data-aos="fade-up" data-aos-delay="${i * 100}">
       <div class="service-icon">${i + 1}</div>
-      <h3>${s.name}</h3>
-      <p>${aiContent.serviceDescriptions[s.name] || 'Professional ' + s.name.toLowerCase() + ' services with guaranteed satisfaction.'}</p>
+      <h3>${s}</h3>
+      <p>${aiContent.serviceDescriptions[s] || 'Professional ' + s.toLowerCase() + ' services with guaranteed satisfaction.'}</p>
       <a href="tel:${phoneClean}" class="service-link">Get Quote →</a>
     </div>
   `).join('');
@@ -82,9 +82,9 @@ export function generateHTML({ business, services, brand, aiContent }) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${business.name} | ${business.type} in ${business.city}, ${business.state} | ${aiContent.metaDescription}</title>
-  <meta name="description" content="${aiContent.metaDescription}">
-  <meta name="keywords" content="${business.type}, ${business.city} ${business.type}, ${services.map(s => s.name).join(', ')}, ${business.state} ${business.type}">
+  <title>${aiContent.seoTitle || business.name + ' | ' + business.type + ' in ' + business.city + ', ' + business.state}</title>
+  <meta name="description" content="${aiContent.seoDesc || aiContent.metaDescription || ''}">
+  <meta name="keywords" content="${aiContent.seoKeywords || business.type + ', ' + business.city + ' ' + business.type + ', ' + services.join(', ') + ', ' + business.state + ' ' + business.type}">
   
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
