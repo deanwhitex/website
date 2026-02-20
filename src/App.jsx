@@ -42,7 +42,7 @@ function Hero({ onStartBuilding }) {
             fontWeight:'400',
             lineHeight:1.6
           }}>
-            Professional websites in 5 minutes. AI writes everything. Download HTML or get instant live URL. $97.
+            Professional websites in 5 minutes. AI writes everything. Download HTML or get an instant live URL. 
           </p>
           
           <button 
@@ -305,7 +305,11 @@ export default function App() {
   };
 
   const handleGenerated = async (generatedHtml) => {
+    console.log('Website generated! HTML length:', generatedHtml.length);
+    
+    // Try to deploy, but don't block if it fails
     try {
+      console.log('Attempting deployment to Netlify...');
       const deployRes = await fetch(`/api/deploy/${submissionId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -315,22 +319,20 @@ export default function App() {
         }),
       });
       
-      const deployData = await deployRes.json();
-      if (deployData.url) {
-        setNetlifyUrl(deployData.url);
+      if (deployRes.ok) {
+        const deployData = await deployRes.json();
+        if (deployData.url) {
+          console.log('Deployment succeeded:', deployData.url);
+          setNetlifyUrl(deployData.url);
+        }
+      } else {
+        console.warn('Deployment failed, but continuing anyway');
       }
-      
-      await fetch(`/api/save-website/${submissionId}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          html: generatedHtml,
-          netlifyUrl: deployData.url 
-        }),
-      });
     } catch (err) {
-      console.error('Deploy error:', err);
+      console.warn('Deployment error (non-fatal):', err);
     }
+    
+    // Save HTML regardless of deployment status
     setHtml(generatedHtml);
     setStage('results');
   };
