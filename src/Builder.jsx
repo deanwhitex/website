@@ -298,7 +298,7 @@ function extractJSON(raw) {
 async function generateAllContent(biz, submissionId) {
   const svcList = biz.services.slice(0, 8).join(", ");
   const svcKeys = biz.services.slice(0, 8)
-    .map(s => `    "${s}": "2 compelling sentences about this specific service focusing on customer benefits and results"`)
+    .map(s => `    "${s}": "3 compelling sentences about this specific service — mention ${biz.city}, ${biz.state} naturally in one sentence, focus on customer benefits, outcomes, and quality"`)
     .join(",\n");
   const certList = biz.certs && biz.certs.length > 0 ? biz.certs.join(", ") : "none listed";
   const serviceAreasList = biz.serviceAreas ? biz.serviceAreas : `${biz.city} and surrounding areas`;
@@ -337,7 +337,7 @@ ${svcKeys}
   ],
   "seoTitle": "under 60 chars: Business Name | #1 Type in City, ST",
   "seoDesc": "150-160 chars for Google including city, type, and key benefit",
-  "seoKeywords": "10 comma-separated local search keywords including city and service type",
+  "seoKeywords": "comma-separated local search keywords — MUST include each of these exact service names: ${svcList} — plus city name (${biz.city}), state (${biz.state}), and service type (${biz.type})",
   "ctaHeadline": "urgent call-to-action headline, max 7 words",
   "trustStatement": "one sentence mentioning license/certifications, years of experience, and guarantee"
 }`;
@@ -510,10 +510,8 @@ section{padding:5.5rem 0}
 .svc-icon{width:40px;height:40px;background:var(--y);border-radius:3px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.2rem;flex-shrink:0;color:#fff}
 .svc-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;color:#fff;margin-bottom:.5rem}
 .svc-card p{color:#666;font-size:.9rem;line-height:1.75;margin-bottom:1.25rem}
-.svc-items{list-style:none;padding:0}
-.svc-items li{padding:.4rem 0;border-bottom:1px solid var(--border);font-size:.84rem;color:#888;display:flex;align-items:center;gap:8px}
-.svc-items li:last-child{border-bottom:none}
-.svc-items li::before{content:'✓';color:var(--y);font-weight:900;font-size:.95rem;flex-shrink:0}
+.svc-cta{display:inline-flex;align-items:center;gap:6px;margin-top:1.25rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:1px;text-transform:uppercase;color:var(--y);text-decoration:none;transition:gap .2s,opacity .2s}
+.svc-cta:hover{gap:10px;opacity:.85}
 
 /* about */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
@@ -1501,8 +1499,9 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
                     {brand.logo && <span style={{fontSize:".7rem", background:"#16a34a", color:"#fff", padding:"2px 8px", borderRadius:"2px", fontFamily:"'Barlow Condensed',sans-serif", fontWeight:700, letterSpacing:"1px"}}>✓ UPLOADED</span>}
                     <span style={{fontSize:".72rem", fontFamily:"'Barlow Condensed',sans-serif", fontWeight:700, letterSpacing:"2.5px", textTransform:"uppercase", color:"#555"}}>Company Logo</span>
                   </div>
-                  <Drop id="logo-up" label="" hint="PNG with transparent background strongly recommended. Shown in nav and footer of your website."
-                    sublabel="Upload Your Logo" preview={brand.logo} onFile={onLogo} />
+                  <p style={{fontSize:".75rem", color:"#b91c1c", fontWeight:700, marginBottom:"8px", fontFamily:"'Barlow Condensed',sans-serif", letterSpacing:".5px"}}>⚠ Must be a PNG with a transparent background. A white or colored background will look broken on the website.</p>
+                  <Drop id="logo-up" label="" hint="PNG format with transparent background required — no white box, no background color. This ensures your logo looks correct on both the white navigation bar and dark footer."
+                    sublabel="Upload Transparent Logo (PNG)" preview={brand.logo} onFile={onLogo} />
                 </div>
 
                 {/* REQUIRED: Primary Color */}
