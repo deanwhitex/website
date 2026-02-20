@@ -89,81 +89,81 @@ const FALLBACK = {
 const GALLERY_FALLBACK = {
   "Roofing": [
     "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?w=800&q=80",
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80"
+    "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80",
+    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80",
+    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
   ],
   "HVAC": [
     "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&q=80",
     "https://images.unsplash.com/photo-1621905252472-178c8d6890b4?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
-    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80"
+    "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80",
+    "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80",
+    "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?w=800&q=80",
+    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
   ],
   "Plumbing": [
     "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=800&q=80",
     "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
     "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
     "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=800&q=80",
-    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+    "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80"
   ],
   "Electrical": [
     "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80",
     "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80",
     "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
+    "https://images.unsplash.com/photo-1497366858526-0766e4ce5912?w=800&q=80",
+    "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80",
+    "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=800&q=80"
   ],
   "Landscaping": [
     "https://images.unsplash.com/photo-1558904541-efa843a96f01?w=800&q=80",
     "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80",
     "https://images.unsplash.com/photo-1585320806297-9794b3e4aaae?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+    "https://images.unsplash.com/photo-1599594056739-0e4e28e9e0f1?w=800&q=80",
+    "https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=800&q=80",
+    "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=800&q=80"
   ],
   "Painting": [
     "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&q=80",
     "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80"
+    "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&q=80",
+    "https://images.unsplash.com/photo-1499955085172-a104c9463ece?w=800&q=80",
+    "https://images.unsplash.com/photo-1464082354059-27db6ce50048?w=800&q=80",
+    "https://images.unsplash.com/photo-1572883454114-1cf0031ede2a?w=800&q=80"
   ],
   "Flooring": [
     "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=80",
     "https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=800&q=80",
     "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+    "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80",
+    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?w=800&q=80"
   ],
   "Windows & Doors": [
     "https://images.unsplash.com/photo-1545259742-75a8faaa542d?w=800&q=80",
     "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80",
-    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
+    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80",
+    "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80",
+    "https://images.unsplash.com/photo-1497366858526-0766e4ce5912?w=800&q=80"
   ],
   "Solar Installation": [
     "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80",
     "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80",
     "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=800&q=80",
     "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80",
     "https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=800&q=80"
   ],
   "General Contracting": [
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
-    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
+    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
+    "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80",
     "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80",
     "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80"
   ],
@@ -172,18 +172,100 @@ const GALLERY_FALLBACK = {
     "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80",
     "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80",
     "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=800&q=80"
+    "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=800&q=80",
+    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80"
   ],
   "Pest Control": [
     "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80",
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
+    "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80",
     "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
-    "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80"
+    "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80"
   ]
 };
+
+// Service-specific images keyed by service name
+const SVC_IMG_MAP = {
+  "Roof Repair":                "photo-1632778149955-e80f8ceca2e8",
+  "Roof Replacement":           "photo-1516455590571-18256e5bb9ff",
+  "Storm Damage Restoration":   "photo-1504307651254-35680f356dfd",
+  "Roof Inspection":            "photo-1570129477492-45c003edd2be",
+  "Gutters & Drainage":         "photo-1512917774080-9991f1c4c750",
+  "Preventive Maintenance":     "photo-1516455590571-18256e5bb9ff",
+  "AC Repair & Service":        "photo-1621905252472-178c8d6890b4",
+  "Heating Repair":             "photo-1585771724684-38269d6639fd",
+  "New System Installation":    "photo-1581094271901-8022df4466f9",
+  "Seasonal Maintenance Plans": "photo-1621905251189-08b45d6a269e",
+  "Emergency Service":          "photo-1621905252472-178c8d6890b4",
+  "Indoor Air Quality":         "photo-1556909114-f6e7ad7d3136",
+  "Leak Detection & Repair":    "photo-1607472586893-edb57bdc0e39",
+  "Drain Cleaning":             "photo-1585771724684-38269d6639fd",
+  "Water Heater Service":       "photo-1584622650111-993a426fbf0a",
+  "Emergency Plumbing":         "photo-1607472586893-edb57bdc0e39",
+  "Pipe Replacement":           "photo-1600566752355-35792bedcfea",
+  "Sewer Line Repair":          "photo-1581244277943-fe4a9c777189",
+  "Electrical Repairs":         "photo-1621905252507-b35492cc74b4",
+  "Panel Upgrades":             "photo-1621905251189-08b45d6a269e",
+  "Lighting Installation":      "photo-1555664424-778a1e5e1b48",
+  "Outlets & Switches":         "photo-1621905252507-b35492cc74b4",
+  "Generator Installation":     "photo-1473341304170-971dccb5ac1e",
+  "Lawn Maintenance":           "photo-1558904541-efa843a96f01",
+  "Hardscape Design":           "photo-1599594056739-0e4e28e9e0f1",
+  "Landscape Design":           "photo-1416879595882-3373a0480b5b",
+  "Irrigation Systems":         "photo-1585320806297-9794b3e4aaae",
+  "Tree & Shrub Care":          "photo-1462275646964-a0e3386b89fa",
+  "Seasonal Cleanup":           "photo-1516912481808-3406841bd33c",
+  "Interior Painting":          "photo-1562259949-e8e7689d7828",
+  "Exterior Painting":          "photo-1589939705384-5185137a7f0f",
+  "Cabinet Refinishing":        "photo-1513694203232-719a280e022f",
+  "Deck & Fence Staining":      "photo-1464082354059-27db6ce50048",
+  "Commercial Painting":        "photo-1572883454114-1cf0031ede2a",
+  "Color Consulting":           "photo-1499955085172-a104c9463ece",
+  "Hardwood Installation":      "photo-1631679706909-1844bbd07221",
+  "Tile & Stone":               "photo-1600566752355-35792bedcfea",
+  "Carpet Installation":        "photo-1600585152915-d208bec867a1",
+  "Luxury Vinyl Plank":         "photo-1555041469-a586c61ea9bc",
+  "Floor Refinishing":          "photo-1523413651479-597eb2da0ad6",
+  "Floor Repair":               "photo-1631679706909-1844bbd07221",
+  "Window Replacement":         "photo-1545259742-75a8faaa542d",
+  "Entry Door Installation":    "photo-1558618047-f4e60e4a6d45",
+  "Sliding Glass Doors":        "photo-1570129477492-45c003edd2be",
+  "Storm Windows":              "photo-1512917774080-9991f1c4c750",
+  "Energy-Efficient Upgrades":  "photo-1497366858526-0766e4ce5912",
+  "Custom Orders":              "photo-1558618666-fcd25c85cd64",
+  "Residential Solar":          "photo-1509391366360-2e959784a276",
+  "Commercial Solar":           "photo-1591115765373-5207764f72e7",
+  "Battery Storage":            "photo-1508514177221-188b1cf16e9d",
+  "EV Charger Install":         "photo-1524492412937-b28074a5d7da",
+  "System Monitoring":          "photo-1497440001374-f26997328c1b",
+  "Maintenance Plans":          "photo-1558449028-b53a39d100fc",
+  "Home Remodeling":            "photo-1556909114-f6e7ad7d3136",
+  "Room Additions":             "photo-1504307651254-35680f356dfd",
+  "Kitchen Renovation":         "photo-1484154218962-a197022b5858",
+  "Bathroom Remodel":           "photo-1600566752355-35792bedcfea",
+  "Basement Finishing":         "photo-1541888946425-d81bb19240f5",
+  "Project Management":         "photo-1558618047-f4e60e4a6d45",
+  "Pool Cleaning":              "photo-1575429198097-0414ec08e8cd",
+  "Pool Repair":                "photo-1571902943202-507ec2618e8f",
+  "Pool Renovation":            "photo-1520250497591-112f2f40a3f4",
+  "Equipment Upgrades":         "photo-1562565652-a0d8f0c59eb4",
+  "Seasonal Open/Close":        "photo-1600585152220-90363fe7e115",
+  "Weekly Maintenance Plans":   "photo-1571019613454-1cb2f99b2d8b",
+  "Termite Control":            "photo-1558618666-fcd25c85cd64",
+  "Rodent Exclusion":           "photo-1515694346937-94d85e41e6f0",
+  "Insect Treatment":           "photo-1558618666-fcd25c85cd64",
+  "Bed Bug Treatment":          "photo-1515694346937-94d85e41e6f0",
+  "Preventive Inspections":     "photo-1585771724684-38269d6639fd",
+  "Eco-Friendly Options":       "photo-1573496359142-b8d87734a5a2",
+};
+function getSvcImg(svcName, bizType) {
+  const exact = SVC_IMG_MAP[svcName];
+  if (exact) return `https://images.unsplash.com/${exact}?w=600&q=75&fit=crop`;
+  // Fallback: use industry hero image
+  return FALLBACK[bizType] || FALLBACK["General Contracting"];
+}
+
 
 // ─── Claude API call ────────────────────────────────────────────────────────────
 async function callClaude(prompt, submissionId) {
@@ -240,7 +322,7 @@ Warranty: ${biz.warranty || "standard workmanship warranty"}
 
 Required JSON structure:
 {
-  "heroHeadline": "3-5 word ALL CAPS punchy headline (not the business name)",
+  "heroHeadline": "3-5 word ALL CAPS punchy headline — do NOT include the service type as it appears separately below the headline",
   "heroSub": "one compelling sentence under 12 words explaining why customers choose them",
   "aboutParagraph": "two short paragraphs (newline between them), warm and local, 80-100 words total — naturally weave in certifications, years, and city name",
   "serviceDescriptions": {
@@ -306,10 +388,24 @@ ${svcKeys}
 }
 
 // ─── HTML Generator ─────────────────────────────────────────────────────────────
+function hexLuminance(hex) {
+  const c = hex.replace('#','');
+  const r = parseInt(c.substr(0,2),16)/255, g = parseInt(c.substr(2,2),16)/255, b = parseInt(c.substr(4,2),16)/255;
+  const toLinear = v => v <= 0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4);
+  return 0.2126*toLinear(r) + 0.7152*toLinear(g) + 0.0722*toLinear(b);
+}
+function readableText(bg) { return hexLuminance(bg) > 0.35 ? '#1a1a1a' : '#e5e7eb'; }
+function mutedText(bg) { return hexLuminance(bg) > 0.35 ? '#555555' : '#9ca3af'; }
+function subtleText(bg) { return hexLuminance(bg) > 0.35 ? '#777777' : '#6b7280'; }
+
 function buildHTML({ biz, brand, ai }) {
   const heroSrc = brand.hero || FALLBACK[biz.type] || FALLBACK["General Contracting"];
   const gold = brand.primary || Y;
   const dark = brand.secondary || BK;
+  const footerText = readableText(dark);
+  const footerMuted = mutedText(dark);
+  const footerSubtle = subtleText(dark);
+  const footerBorder = hexLuminance(dark) > 0.35 ? '#cccccc' : '#1a1a1a';
   const sdata = SVC_DATA[biz.type] || { items: biz.services, certs: [] };
   const galleryPhotos = (brand.photos && brand.photos.length > 0)
     ? brand.photos
@@ -407,7 +503,9 @@ section{padding:5.5rem 0}
 
 /* services */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
-.svc-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:2rem;transition:all .3s;cursor:default}
+.svc-card{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .3s;cursor:default;display:flex;flex-direction:column}
+.svc-img{width:100%;height:180px;object-fit:cover;display:block;border-radius:0}
+.svc-card-body{padding:1.75rem}
 .svc-card:hover{border-color:var(--y);transform:translateY(-4px);box-shadow:0 12px 30px rgba(240,196,25,.1)}
 .svc-icon{width:40px;height:40px;background:var(--y);border-radius:3px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.2rem;flex-shrink:0;color:#fff}
 .svc-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;color:#fff;margin-bottom:.5rem}
@@ -490,15 +588,17 @@ textarea.f-in{min-height:120px;resize:vertical}
 .area-pill::before{content:'';width:4px;height:4px;background:var(--y);border-radius:50%;flex-shrink:0}
 
 /* footer */
-.footer{background:#050505;border-top:2px solid var(--y);padding:4rem 0 2rem}
+.footer{background:var(--dark);border-top:2px solid var(--y);padding:4rem 0 2rem}
 .footer-grid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:2.5rem;margin-bottom:3rem}
 .footer h4{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:3px;color:var(--y);margin-bottom:1rem}
-.footer p,.footer li{color:#3a3a3a;line-height:2.1;font-size:.85rem}
-.footer a{color:#3a3a3a;transition:color .2s}
+.footer p,.footer li{color:${footerMuted};line-height:2.1;font-size:.85rem}
+.footer a{color:${footerMuted};transition:color .2s}
 .footer a:hover{color:var(--y)}
 .footer ul{list-style:none;padding:0}
-.footer-bottom{border-top:1px solid #0f0f0f;padding-top:1.75rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-bottom span,.footer-bottom a{color:#222;font-size:.78rem}
+.footer-bottom{border-top:1px solid ${footerBorder};padding-top:1.75rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+section[id]{scroll-margin-top:80px}
+.nav-logo img{height:46px;width:auto;mix-blend-mode:multiply;object-fit:contain}
+.footer-bottom span,.footer-bottom a{color:${footerSubtle};font-size:.78rem}
 
 @media(max-width:900px){
   .about-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
@@ -511,7 +611,7 @@ textarea.f-in{min-height:120px;resize:vertical}
 
 <nav class="nav">
   <div class="nav-inner">
-    ${brand.logo ? `<img src="${brand.logo}" alt="${biz.name}" style="height:46px;width:auto">` : `<div class="nav-logo">${biz.name.split(' ').map((w,i)=>i===0?`<span>${w}</span>`:w).join(' ')}</div>`}
+    ${brand.logo ? `<img src="${brand.logo}" alt="${biz.name}" style="height:46px;width:auto;mix-blend-mode:multiply;object-fit:contain">` : `<div class="nav-logo">${biz.name.split(' ').map((w,i)=>i===0?`<span>${w}</span>`:w).join(' ')}</div>`}
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
@@ -537,7 +637,7 @@ textarea.f-in{min-height:120px;resize:vertical}
   <div class="hero-shade"></div>
   <div class="hero-body">
     <div class="hero-pill">Serving ${biz.city}, ${biz.state}</div>
-    <h1>${heroHeadline}<em>${biz.type}</em></h1>
+    <h1>${heroHeadline}</h1>
     <p class="hero-sub">${heroSub}</p>
     <div class="hero-btns">
       <a href="tel:${biz.phone.replace(/\D/g,'')}" class="btn-gold">Get Free Estimate</a>
@@ -570,15 +670,18 @@ textarea.f-in{min-height:120px;resize:vertical}
     <div class="svc-grid">
       ${biz.services.map((s,i)=>`
       <div class="svc-card">
-        <div class="svc-icon">✦</div>
-        <h3>${s}</h3>
-        <p>${svcDescriptions[s] || `Professional ${s.toLowerCase()} services delivered with precision, quality materials, and a satisfaction guarantee.`}</p>
-        <ul class="svc-items">
-          <li>Licensed professionals on every job</li>
-          <li>Premium materials &amp; workmanship</li>
-          <li>Written warranty included</li>
-          <li>Upfront, transparent pricing</li>
-        </ul>
+        <img class="svc-img" src="${getSvcImg(s, biz.type)}" alt="${s}" loading="lazy">
+        <div class="svc-card-body">
+          <div class="svc-icon">✦</div>
+          <h3>${s}</h3>
+          <p>${svcDescriptions[s] || `Professional ${s.toLowerCase()} services delivered with precision, quality materials, and a satisfaction guarantee.`}</p>
+          <ul class="svc-items">
+            <li>Licensed professionals on every job</li>
+            <li>Premium materials &amp; workmanship</li>
+            <li>Written warranty included</li>
+            <li>Upfront, transparent pricing</li>
+          </ul>
+        </div>
       </div>`).join('')}
     </div>
     ${biz.emergency ? `
