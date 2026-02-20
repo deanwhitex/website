@@ -1244,38 +1244,10 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
         }
       `}</style>
 
-      {/* ── Top util bar ── */}
-      <div className="util-bar" style={{background:"#060606", borderBottom:"1px solid #111", padding:"7px 2rem", display:"flex", justifyContent:"space-between", alignItems:"center"}}>
-        <div style={{display:"flex", gap:"14px", alignItems:"center"}}>
-          {[
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>,
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>,
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#060606"/></svg>
-          ].map((ic,i)=>(
-            <span key={i} style={{color:"#555", display:"flex", alignItems:"center", cursor:"pointer", transition:"color .2s"}}
-              onMouseEnter={e=>e.currentTarget.style.color=Y}
-              onMouseLeave={e=>e.currentTarget.style.color="#555"}>{ic}</span>
-          ))}
-        </div>
-        <span style={{color:"#aaa", fontFamily:"'Barlow Condensed',sans-serif", fontWeight:600, fontSize:".78rem", letterSpacing:".5px", display:"flex", alignItems:"center", gap:"5px"}}>
-          {Icons.phone} +1 (407) 641-3731
-        </span>
-      </div>
-
       {/* ── Nav ── */}
       <nav className="builder-nav" style={{background:"#0c0c0c", height:"66px", display:"flex", justifyContent:"space-between", alignItems:"center", padding:"0 2rem", position:"sticky", top:0, zIndex:100, borderBottom:"1px solid #1e1e1e"}}>
         <img src={KC_LOGO} alt="King Contractor Agency" style={{height:"48px", width:"auto"}} />
         <div className="nav-links-wrap" style={{display:"flex", gap:"22px", alignItems:"center"}}>
-          {[
-            {l:"Portfolio",    u:"https://kingcontractor.com/portfolio/"},
-            {l:"SEO",          u:"https://kingcontractor.com/roofing-seo-for-contractors/"},
-            {l:"Contact",      u:"https://kingcontractor.com/contact-us/"},
-          ].map(({l,u})=>(
-            <a key={l} href={u} target="_blank" rel="noopener" className="nav-text-link"
-              style={{fontFamily:"'Barlow Condensed',sans-serif", fontWeight:700, fontSize:".9rem", letterSpacing:".5px", color:"#aaa", textDecoration:"none", textTransform:"uppercase", transition:"color .2s"}}
-              onMouseEnter={e=>e.currentTarget.style.color=Y}
-              onMouseLeave={e=>e.currentTarget.style.color="#aaa"}>{l}</a>
-          ))}
           <a href="https://go.kingcontractor.com/book" target="_blank" rel="noopener"
             style={{background:Y, color:BK, padding:"9px 18px", borderRadius:"3px", fontFamily:"'Barlow Condensed',sans-serif", fontWeight:700, fontSize:".88rem", letterSpacing:"1px", textDecoration:"none", textTransform:"uppercase", transition:"all .2s", whiteSpace:"nowrap"}}
             onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-1px)";e.currentTarget.style.boxShadow=`0 5px 18px rgba(240,196,25,.4)`;}}
