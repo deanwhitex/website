@@ -114,7 +114,7 @@ function Hero({ onStartBuilding }) {
 
 function Generating({ businessName }) {
   return (
-    <div style={{minHeight:'100vh', background:BK, display:'flex', alignItems:'center', justifyContent:'center'}}>
+    <div style={{minHeight:'100vh', background:'#000000', display:'flex', alignItems:'center', justifyContent:'center'}}>
       <div style={{textAlign:'center'}}>
         <div style={{fontSize:'4rem', marginBottom:'2rem', animation:'pulse 2s infinite'}}>⚡</div>
         <h2 style={{fontFamily:"'Inter', sans-serif", fontSize:'2.5rem', fontWeight:'700', color:'#fff', marginBottom:'1rem', letterSpacing:'-0.01em'}}>
@@ -151,7 +151,7 @@ function Results({ html, businessName, netlifyUrl, onBuildAnother }) {
   };
 
   return (
-    <div style={{minHeight:'100vh', background:BK}}>
+    <div style={{minHeight:'100vh', background:'#000000'}}>
       <style>{`
         * { box-sizing: border-box; }
         .results-wrap { padding: 2rem; }
