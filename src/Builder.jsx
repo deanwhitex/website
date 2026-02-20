@@ -939,16 +939,22 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
   React.useEffect(() => {
     if (autoGenerate && prefilledData) {
       console.log('AutoGenerate triggered with data:', prefilledData);
+      console.log('submissionId prop:', submissionId);
+      
+      if (!submissionId) {
+        console.error('WARNING: submissionId is missing!');
+      }
+      
       // Set the data
       setBiz(prefilledData.business);
       setBrand(prefilledData.brand);
       // Trigger generation after state updates
       setTimeout(() => {
-        console.log('About to call runGenerate');
+        console.log('About to call runGenerate with submissionId:', submissionId);
         runGenerate();
       }, 1000);
     }
-  }, [autoGenerate, prefilledData]);
+  }, [autoGenerate, prefilledData, submissionId]);
 
   const download = () => {
     const blob = new Blob([html],{type:"text/html"});
