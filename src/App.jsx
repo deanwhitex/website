@@ -42,7 +42,7 @@ function Hero({ onStartBuilding }) {
             fontWeight:'400',
             lineHeight:1.6
           }}>
-            Professional websites in 5 minutes. AI writes everything. Download HTML or get an instant live URL. 
+            Professional websites in 5 minutes. AI writes everything. Download HTML or get instant live URL. $97.
           </p>
           
           <button 
@@ -260,6 +260,10 @@ export default function App() {
         .then(data => {
           clearTimeout(timeout);
           console.log('Payment verification response:', data);
+          console.log('Setting submissionId to:', data.submissionId);
+          console.log('Setting businessName to:', data.businessName);
+          console.log('Setting submissionData to:', data.data);
+          
           if (data.paid === true) {
             setSubmissionId(data.submissionId);
             setBusinessName(data.businessName);
