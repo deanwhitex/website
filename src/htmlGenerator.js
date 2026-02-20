@@ -759,12 +759,6 @@ export function generateHTML({ business, services, brand, aiContent }) {
           </a>
           <a href="#services" class="btn-secondary">Our Services</a>
         </div>
-        <div class="trust-strip">
-          ${business.years ? `<div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> ${business.years}+ Years</div>` : ''}
-          <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Licensed & Insured</div>
-          <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 100% Satisfaction</div>
-          ${business.emergency ? '<div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 24/7 Emergency</div>' : ''}
-        </div>
       </div>
     </div>
   </section>

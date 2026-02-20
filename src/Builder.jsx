@@ -1678,25 +1678,6 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
         </div>{/* end flex */}
       </div>{/* end builder */}
 
-      {/* ── Trust Strip ── */}
-      <div style={{background:"#0a0a0a", borderTop:"1px solid #1a1a1a", borderBottom:"1px solid #1a1a1a", padding:"20px 2rem"}}>
-        <div style={{maxWidth:"1100px", margin:"0 auto", display:"flex", justifyContent:"center", alignItems:"center", gap:"0", flexWrap:"wrap"}}>
-          {[
-            {icon:"★", text:"5-Star Rated Agency"},
-            {icon:"✓", text:"Licensed & Insured"},
-            {icon:"⚡", text:"Fast Turnaround"},
-            {icon:"🔒", text:"Money-Back Guarantee"},
-            {icon:"📍", text:"Serving All 50 States"},
-          ].map(({icon,text},i)=>(
-            <div key={i} className="trust-item" style={{display:"flex", alignItems:"center", gap:"8px", padding:"6px 28px",
-              borderRight: i<4 ? "1px solid #1e1e1e" : "none"}}>
-              <span style={{fontSize:".9rem", lineHeight:1}}>{icon}</span>
-              <span style={{fontFamily:"'Barlow Condensed',sans-serif", fontWeight:700, fontSize:".78rem", letterSpacing:"1.5px", textTransform:"uppercase", color:"#666"}}>{text}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* ── Footer ── */}
       <footer style={{background:"#050505", borderTop:`2px solid ${Y}`, padding:"2.75rem 2rem 1.75rem"}}>
         <div style={{maxWidth:"1080px", margin:"0 auto"}}>
