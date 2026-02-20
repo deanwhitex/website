@@ -89,7 +89,7 @@ const FALLBACK = {
 };
 
 // ─── Claude API call ────────────────────────────────────────────────────────────
-async function callClaude(prompt) {
+async function callClaude(prompt, submissionId) {
   const res = await fetch(`/api/claude/${submissionId}`, {
     method:"POST",
     headers:{ "Content-Type":"application/json" },
@@ -117,7 +117,7 @@ function extractJSON(raw) {
   return null;
 }
 
-async function generateAllContent(biz) {
+async function generateAllContent(biz, submissionId) {
   const svcList = biz.services.slice(0, 8).join(", ");
   const svcKeys = biz.services.slice(0, 8)
     .map(s => `    "${s}": "one compelling sentence"`)
@@ -156,7 +156,7 @@ ${svcKeys}
   "trustStatement": "one sentence mentioning license, years, and guarantee"
 }`;
 
-  const raw = await callClaude(prompt);
+  const raw = await callClaude(prompt, submissionId);
   const result = extractJSON(raw);
 
   if (!result) {
@@ -903,7 +903,7 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
       log("Analyzing your business details...");
       await new Promise(r=>setTimeout(r,400));
       log("Crafting your hero headline & tagline...");
-      const ai = await generateAllContent(biz);
+      const ai = await generateAllContent(biz, submissionId);
       if (!ai) throw new Error("Could not parse AI response");
 
       log("Writing your About Us section...");
@@ -1291,25 +1291,17 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
                 <SectionHead step={4} title="AI Generation & Preview" subtitle="Claude writes your headline, about us, service descriptions, FAQ, and SEO — then builds your complete website." />
 
                 {aiStatus === "idle" && (
-  <div style={{textAlign:"center", padding:"2rem 0"}}>
-    <div style={{width:"72px", height:"72px", background:Y, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 1.25rem", fontSize:"1.8rem"}}>✦</div>
-    <h3 style={{fontFamily:"'Bebas Neue',sans-serif", fontSize:"1.8rem", letterSpacing:"1px", color:"#111", marginBottom:".5rem"}}>Review & Proceed to Payment</h3>
-    <p style={{color:"#888", fontSize:".9rem", maxWidth:"460px", margin:"0 auto 2rem", lineHeight:1.7}}>
-      Once payment is complete, AI will write a custom headline, tagline, about section, service descriptions, 4-question FAQ, and full SEO metadata — all tailored to <strong>{biz.name || "your business"}</strong> in <strong>{biz.city || "your city"}</strong>.
-    </p>
-    <Btn 
-      onClick={() => {
-        // Save to database and redirect to Stripe
-        if (onFormComplete) {
-          onFormComplete({ business: biz, brand: brand });
-        }
-      }} 
-      style={{fontSize:"1.3rem", padding:"14px 36px"}}
-    >
-      PROCEED TO PAYMENT ($97)
-    </Btn>
-  </div>
-)}
+                  <div style={{textAlign:"center", padding:"2rem 0"}}>
+                    <div style={{width:"72px", height:"72px", background:Y, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 1.25rem", fontSize:"1.8rem"}}>✦</div>
+                    <h3 style={{fontFamily:"'Bebas Neue',sans-serif", fontSize:"1.8rem", letterSpacing:"1px", color:"#111", marginBottom:".5rem"}}>Ready to Build</h3>
+                    <p style={{color:"#888", fontSize:".9rem", maxWidth:"400px", margin:"0 auto 2rem", lineHeight:1.7}}>
+                      AI will write a custom headline, tagline, about section, service descriptions, 4-question FAQ, and full SEO metadata — all tailored to <strong>{biz.name || "your business"}</strong> in <strong>{biz.city || "your city"}</strong>.
+                    </p>
+                    <Btn onClick={runGenerate} style={{fontSize:"1.3rem", padding:"14px 36px"}}>
+                      {Icons.wand} Generate My Website
+                    </Btn>
+                  </div>
+                )}
 
                 {aiStatus === "loading" && (
                   <div style={{padding:"1.5rem 0"}}>
