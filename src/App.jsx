@@ -6,7 +6,7 @@ const BK = "#0C0C0C";
 
 function Hero({ onStartBuilding }) {
   return (
-    <div style={{minHeight:'100vh', background:BK, display:'flex', flexDirection:'column', position:'relative', overflow:'hidden'}}>
+    <div style={{minHeight:'100vh', background:000000, display:'flex', flexDirection:'column', position:'relative', overflow:'hidden'}}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
         * { box-sizing: border-box; }
