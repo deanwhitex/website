@@ -101,7 +101,7 @@ const GALLERY_FALLBACK = {
     "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80",
     "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80",
     "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?w=800&q=80",
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
+    "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80"
   ],
   "Plumbing": [
     "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=800&q=80",
@@ -109,7 +109,7 @@ const GALLERY_FALLBACK = {
     "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
     "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
     "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=800&q=80",
-    "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80"
+    "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=800&q=80"
   ],
   "Electrical": [
     "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80",
@@ -162,8 +162,8 @@ const GALLERY_FALLBACK = {
   "General Contracting": [
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
-    "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80",
+    "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80",
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
     "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80",
     "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80"
   ],
@@ -181,7 +181,7 @@ const GALLERY_FALLBACK = {
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
     "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80",
     "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
-    "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80"
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80"
   ]
 };
 
@@ -198,7 +198,7 @@ const SVC_IMG_MAP = {
   "New System Installation":    "photo-1581094271901-8022df4466f9",
   "Seasonal Maintenance Plans": "photo-1621905251189-08b45d6a269e",
   "Emergency Service":          "photo-1621905252472-178c8d6890b4",
-  "Indoor Air Quality":         "photo-1556909114-f6e7ad7d3136",
+  "Indoor Air Quality":         "photo-1558618047-f4e60e4a6d45",
   "Leak Detection & Repair":    "photo-1607472586893-edb57bdc0e39",
   "Drain Cleaning":             "photo-1585771724684-38269d6639fd",
   "Water Heater Service":       "photo-1584622650111-993a426fbf0a",
@@ -240,9 +240,9 @@ const SVC_IMG_MAP = {
   "EV Charger Install":         "photo-1524492412937-b28074a5d7da",
   "System Monitoring":          "photo-1497440001374-f26997328c1b",
   "Maintenance Plans":          "photo-1558449028-b53a39d100fc",
-  "Home Remodeling":            "photo-1556909114-f6e7ad7d3136",
+  "Home Remodeling":            "photo-1558618047-f4e60e4a6d45",
   "Room Additions":             "photo-1504307651254-35680f356dfd",
-  "Kitchen Renovation":         "photo-1484154218962-a197022b5858",
+  "Kitchen Renovation":         "photo-1541888946425-d81bb19240f5",
   "Bathroom Remodel":           "photo-1600566752355-35792bedcfea",
   "Basement Finishing":         "photo-1541888946425-d81bb19240f5",
   "Project Management":         "photo-1558618047-f4e60e4a6d45",
@@ -298,7 +298,7 @@ function extractJSON(raw) {
 async function generateAllContent(biz, submissionId) {
   const svcList = biz.services.slice(0, 8).join(", ");
   const svcKeys = biz.services.slice(0, 8)
-    .map(s => `    "${s}": "2 compelling sentences about this specific service focusing on customer benefits and results"`)
+    .map(s => `    "${s}": "2 compelling sentences about this specific service — mention ${biz.city}, ${biz.state} naturally if possible, focus on customer benefits, outcomes, and quality"`)
     .join(",\n");
   const certList = biz.certs && biz.certs.length > 0 ? biz.certs.join(", ") : "none listed";
   const serviceAreasList = biz.serviceAreas ? biz.serviceAreas : `${biz.city} and surrounding areas`;
@@ -337,7 +337,7 @@ ${svcKeys}
   ],
   "seoTitle": "under 60 chars: Business Name | #1 Type in City, ST",
   "seoDesc": "150-160 chars for Google including city, type, and key benefit",
-  "seoKeywords": "10 comma-separated local search keywords including city and service type",
+  "seoKeywords": "comma-separated local search keywords — MUST include each of these exact service names: ${svcList} — plus city name (${biz.city}), state (${biz.state}), and service type (${biz.type})",
   "ctaHeadline": "urgent call-to-action headline, max 7 words",
   "trustStatement": "one sentence mentioning license/certifications, years of experience, and guarantee"
 }`;
@@ -1529,8 +1529,9 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
                     {brand.logo && <span style={{fontSize:".7rem", background:"#16a34a", color:"#fff", padding:"2px 8px", borderRadius:"2px", fontFamily:"'Barlow Condensed',sans-serif", fontWeight:700, letterSpacing:"1px"}}>✓ UPLOADED</span>}
                     <span style={{fontSize:".72rem", fontFamily:"'Barlow Condensed',sans-serif", fontWeight:700, letterSpacing:"2.5px", textTransform:"uppercase", color:"#555"}}>Company Logo</span>
                   </div>
-                  <Drop id="logo-up" label="" hint="PNG with transparent background strongly recommended. Shown in nav and footer of your website."
-                    sublabel="Upload Your Logo" preview={brand.logo} onFile={onLogo} />
+                  <p style={{fontSize:".75rem", color:"#b91c1c", fontWeight:700, marginBottom:"8px", fontFamily:"'Barlow Condensed',sans-serif", letterSpacing:".5px"}}>⚠ Must be a PNG with a transparent background. A white or colored background will look broken on the website.</p>
+                  <Drop id="logo-up" label="" hint="PNG format with transparent background required — no white box, no background color. This ensures your logo looks correct on both the white navigation bar and dark footer."
+                    sublabel="Upload Transparent Logo (PNG)" preview={brand.logo} onFile={onLogo} />
                 </div>
 
                 {/* REQUIRED: Primary Color */}
