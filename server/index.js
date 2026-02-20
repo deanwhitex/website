@@ -120,6 +120,9 @@ app.post('/api/create-checkout/:submissionId', async (req, res) => {
 // ─── Verify Payment & Get Data (STRICT - ONLY PAID) ──────────────────────────
 app.get('/api/verify-payment/:sessionId', async (req, res) => {
   try {
+    console.log('=== PAYMENT VERIFICATION START ===');
+    console.log('Session ID:', req.params.sessionId);
+    
     const session = await stripe.checkout.sessions.retrieve(req.params.sessionId);
     
     console.log('Payment verification:', {
@@ -153,9 +156,11 @@ app.get('/api/verify-payment/:sessionId', async (req, res) => {
       return res.status(400).json({ error: 'Submission ID not found in session metadata' });
     }
     
+    console.log('Querying database for submission:', submissionId);
     const result = await pool.query('SELECT * FROM submissions WHERE id = $1', [submissionId]);
     
     if (result.rows.length === 0) {
+      console.error('Submission not found in database:', submissionId);
       return res.status(404).json({ error: 'Submission not found' });
     }
 
@@ -186,10 +191,31 @@ app.get('/api/verify-payment/:sessionId', async (req, res) => {
 
     console.log('Payment verified successfully for submission:', submissionId);
 
-    // Parse JSON fields
-    const parsedServices = sub.services ? JSON.parse(sub.services) : [];
-    const parsedCerts = sub.certifications ? JSON.parse(sub.certifications) : [];
-    const parsedPhotos = sub.photos ? JSON.parse(sub.photos) : [];
+    // Safely parse JSON fields
+    let parsedServices = [];
+    let parsedCerts = [];
+    let parsedPhotos = [];
+    
+    try {
+      parsedServices = sub.services ? JSON.parse(sub.services) : [];
+    } catch (err) {
+      console.error('Failed to parse services:', sub.services, err);
+      parsedServices = [];
+    }
+    
+    try {
+      parsedCerts = sub.certifications ? JSON.parse(sub.certifications) : [];
+    } catch (err) {
+      console.error('Failed to parse certifications:', sub.certifications, err);
+      parsedCerts = [];
+    }
+    
+    try {
+      parsedPhotos = sub.photos ? JSON.parse(sub.photos) : [];
+    } catch (err) {
+      console.error('Failed to parse photos:', sub.photos, err);
+      parsedPhotos = [];
+    }
     
     console.log('Parsed data:', {
       services: parsedServices,
@@ -233,10 +259,14 @@ app.get('/api/verify-payment/:sessionId', async (req, res) => {
       }
     };
     
-    console.log('Returning response:', JSON.stringify(responseData, null, 2));
+    console.log('Returning response with services count:', parsedServices.length);
+    console.log('=== PAYMENT VERIFICATION SUCCESS ===');
     res.json(responseData);
   } catch (err) {
-    console.error('Payment verification error:', err);
+    console.error('=== PAYMENT VERIFICATION ERROR ===');
+    console.error('Error type:', err.constructor.name);
+    console.error('Error message:', err.message);
+    console.error('Error stack:', err.stack);
     res.status(500).json({ error: err.message });
   }
 });
