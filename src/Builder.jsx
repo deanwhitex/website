@@ -298,7 +298,7 @@ function extractJSON(raw) {
 async function generateAllContent(biz, submissionId) {
   const svcList = biz.services.slice(0, 8).join(", ");
   const svcKeys = biz.services.slice(0, 8)
-    .map(s => `    "${s}": "2 compelling sentences about this specific service — mention ${biz.city}, ${biz.state} naturally if possible, focus on customer benefits, outcomes, and quality"`)
+    .map(s => `    "${s}": "3 compelling sentences about this specific service — mention ${biz.city}, ${biz.state} naturally in one sentence, focus on customer benefits, outcomes, and quality"`)
     .join(",\n");
   const certList = biz.certs && biz.certs.length > 0 ? biz.certs.join(", ") : "none listed";
   const serviceAreasList = biz.serviceAreas ? biz.serviceAreas : `${biz.city} and surrounding areas`;
@@ -510,10 +510,8 @@ section{padding:5.5rem 0}
 .svc-icon{width:40px;height:40px;background:var(--y);border-radius:3px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.2rem;flex-shrink:0;color:#fff}
 .svc-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;color:#fff;margin-bottom:.5rem}
 .svc-card p{color:#666;font-size:.9rem;line-height:1.75;margin-bottom:1.25rem}
-.svc-items{list-style:none;padding:0}
-.svc-items li{padding:.4rem 0;border-bottom:1px solid var(--border);font-size:.84rem;color:#888;display:flex;align-items:center;gap:8px}
-.svc-items li:last-child{border-bottom:none}
-.svc-items li::before{content:'✓';color:var(--y);font-weight:900;font-size:.95rem;flex-shrink:0}
+.svc-cta{display:inline-flex;align-items:center;gap:6px;margin-top:1.25rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:1px;text-transform:uppercase;color:var(--y);text-decoration:none;transition:gap .2s,opacity .2s}
+.svc-cta:hover{gap:10px;opacity:.85}
 
 /* about */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
@@ -674,13 +672,8 @@ section[id]{scroll-margin-top:80px}
         <div class="svc-card-body">
           <div class="svc-icon">✦</div>
           <h3>${s}</h3>
-          <p>${svcDescriptions[s] || `Professional ${s.toLowerCase()} services delivered with precision, quality materials, and a satisfaction guarantee.`}</p>
-          <ul class="svc-items">
-            <li>Licensed professionals on every job</li>
-            <li>Premium materials &amp; workmanship</li>
-            <li>Written warranty included</li>
-            <li>Upfront, transparent pricing</li>
-          </ul>
+          <p>${svcDescriptions[s] || `Expert ${s} services for homeowners in ${biz.city}, ${biz.state}. We bring precision craftsmanship, quality materials, and a written satisfaction guarantee to every job we take on.`}</p>
+          <a href="tel:${biz.phone.replace(/\D/g,'')}" class="svc-cta">Get a Free Quote &rarr;</a>
         </div>
       </div>`).join('')}
     </div>
