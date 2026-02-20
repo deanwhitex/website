@@ -384,13 +384,9 @@ export default function App() {
     return (
       <>
         <Generating businessName={businessName} />
-        {submissionData ? (
+        {submissionData && (
           <div style={{display:'none'}}>
             <Builder autoGenerate={true} prefilledData={submissionData} onGenerated={handleGenerated} submissionId={submissionId} />
-          </div>
-        ) : (
-          <div style={{position:'fixed', bottom:'20px', left:'50%', transform:'translateX(-50%)', background:'#ff6b6b', color:'white', padding:'1rem 2rem', borderRadius:'8px', fontSize:'0.9rem', zIndex:1000}}>
-            Error: No submission data. Check console (F12)
           </div>
         )}
       </>
