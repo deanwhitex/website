@@ -253,6 +253,7 @@ export default function App() {
   const [submissionId, setSubmissionId] = useState(null);
   const [submissionData, setSubmissionData] = useState(null);
   const [netlifyUrl, setNetlifyUrl] = useState(null);
+  const [verifyingPayment, setVerifyingPayment] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -268,14 +269,16 @@ export default function App() {
 
     if (sessionId) {
       setStage('generating');
-      
+      setVerifyingPayment(true);
+
       // Timeout fallback - if nothing happens in 30 seconds, show error
       const timeout = setTimeout(() => {
         console.error('Payment verification timeout');
+        setVerifyingPayment(false);
         alert('Payment verification took too long. Please contact support.');
         setStage('hero');
       }, 30000);
-      
+
       fetch(`/api/verify-payment/${sessionId}`)
         .then(res => {
           if (!res.ok) {
@@ -285,11 +288,12 @@ export default function App() {
         })
         .then(data => {
           clearTimeout(timeout);
+          setVerifyingPayment(false);
           console.log('Payment verification response:', data);
           console.log('Setting submissionId to:', data.submissionId);
           console.log('Setting businessName to:', data.businessName);
           console.log('Setting submissionData to:', data.data);
-          
+
           if (data.paid === true) {
             setSubmissionId(data.submissionId);
             setBusinessName(data.businessName);
@@ -303,6 +307,7 @@ export default function App() {
         })
         .catch(err => {
           clearTimeout(timeout);
+          setVerifyingPayment(false);
           console.error('Payment verification error:', err);
           alert('Could not verify payment: ' + err.message);
           setStage('hero');
@@ -388,7 +393,7 @@ export default function App() {
           <div style={{display:'none'}}>
             <Builder autoGenerate={true} prefilledData={submissionData} onGenerated={handleGenerated} submissionId={submissionId} />
           </div>
-        ) : (
+        ) : verifyingPayment ? null : (
           <div style={{position:'fixed', bottom:'20px', left:'50%', transform:'translateX(-50%)', background:'#ff6b6b', color:'white', padding:'1rem 2rem', borderRadius:'8px', fontSize:'0.9rem', zIndex:1000}}>
             Error: No submission data. Check console (F12)
           </div>

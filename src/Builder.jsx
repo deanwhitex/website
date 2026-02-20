@@ -89,99 +89,99 @@ const FALLBACK = {
 const GALLERY_FALLBACK = {
   "Roofing": [
     "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1558905923-5c2df72e13f4?w=800&q=80",
+    "https://images.unsplash.com/photo-1497436072909-60f360fe1ce9?w=800&q=80",
+    "https://images.unsplash.com/photo-1516455590571-56c6cafa0def?w=800&q=80",
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80"
+    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80"
   ],
   "HVAC": [
     "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&q=80",
     "https://images.unsplash.com/photo-1621905252472-178c8d6890b4?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80",
     "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
-    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80"
+    "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&q=80",
+    "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&q=80"
   ],
   "Plumbing": [
     "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=800&q=80",
     "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
     "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=800&q=80",
-    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+    "https://images.unsplash.com/photo-1504652517000-ae1068478c59?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
+    "https://images.unsplash.com/photo-1510174183700-cd25ce00b3c4?w=800&q=80"
   ],
   "Electrical": [
     "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80",
     "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80",
     "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=800&q=80",
     "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
+    "https://images.unsplash.com/photo-1545259742-75a8faaa542d?w=800&q=80"
   ],
   "Landscaping": [
     "https://images.unsplash.com/photo-1558904541-efa843a96f01?w=800&q=80",
     "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80",
     "https://images.unsplash.com/photo-1585320806297-9794b3e4aaae?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+    "https://images.unsplash.com/photo-1592419044706-39796d40f98c?w=800&q=80",
+    "https://images.unsplash.com/photo-1564419320461-6870880221ad?w=800&q=80",
+    "https://images.unsplash.com/photo-1551739440-5dd934d3a94a?w=800&q=80"
   ],
   "Painting": [
     "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&q=80",
     "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80"
+    "https://images.unsplash.com/photo-1622519407650-3df9883f76a5?w=800&q=80",
+    "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800&q=80",
+    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
+    "https://images.unsplash.com/photo-1555636222-cae831e670b3?w=800&q=80"
   ],
   "Flooring": [
     "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=80",
     "https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=800&q=80",
-    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+    "https://images.unsplash.com/photo-1562113530-57ba467cea38?w=800&q=80",
+    "https://images.unsplash.com/photo-1615873968403-89e068629265?w=800&q=80",
+    "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=80"
   ],
   "Windows & Doors": [
     "https://images.unsplash.com/photo-1545259742-75a8faaa542d?w=800&q=80",
     "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80",
-    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
+    "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80",
+    "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
+    "https://images.unsplash.com/photo-1531971085175-9ec0f57e9d83?w=800&q=80"
   ],
   "Solar Installation": [
     "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80",
     "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80",
     "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=800&q=80",
     "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=80",
     "https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=800&q=80"
   ],
   "General Contracting": [
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
-    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
-    "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80",
-    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80"
+    "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=800&q=80",
+    "https://images.unsplash.com/photo-1574359411659-15573a27fd0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&q=80",
+    "https://images.unsplash.com/photo-1599619351208-3e6c839d6828?w=800&q=80"
   ],
   "Pool Services": [
     "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=800&q=80",
     "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80",
     "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80",
     "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=800&q=80"
+    "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=800&q=80",
+    "https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?w=800&q=80"
   ],
   "Pest Control": [
     "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
-    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
-    "https://images.unsplash.com/photo-1558618047-f4e60e4a6d45?w=800&q=80"
+    "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=80",
+    "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
+    "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&q=80",
+    "https://images.unsplash.com/photo-1545127398-14699f92334b?w=800&q=80",
+    "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
   ]
 };
 
@@ -216,7 +216,7 @@ function extractJSON(raw) {
 async function generateAllContent(biz, submissionId) {
   const svcList = biz.services.slice(0, 8).join(", ");
   const svcKeys = biz.services.slice(0, 8)
-    .map(s => `    "${s}": "2 compelling sentences about this specific service focusing on customer benefits and results"`)
+    .map(s => `    "${s}": "2-3 sentences about this specific ${s} service in ${biz.city}, ${biz.state}. Focus on customer benefits, results, and local expertise. Naturally include the city name once."`)
     .join(",\n");
   const certList = biz.certs && biz.certs.length > 0 ? biz.certs.join(", ") : "none listed";
   const serviceAreasList = biz.serviceAreas ? biz.serviceAreas : `${biz.city} and surrounding areas`;
@@ -240,7 +240,7 @@ Warranty: ${biz.warranty || "standard workmanship warranty"}
 
 Required JSON structure:
 {
-  "heroHeadline": "3-5 word ALL CAPS punchy headline (not the business name)",
+  "heroHeadline": "Complete 4-7 word ALL CAPS headline that includes the trade (e.g. ROOFING THAT LASTS A LIFETIME). Never use the business name. Must make sense alone.",
   "heroSub": "one compelling sentence under 12 words explaining why customers choose them",
   "aboutParagraph": "two short paragraphs (newline between them), warm and local, 80-100 words total — naturally weave in certifications, years, and city name",
   "serviceDescriptions": {
@@ -356,16 +356,24 @@ a{text-decoration:none;color:inherit}img{display:block;max-width:100%}
 .util-phone{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.5px;color:#888;display:flex;align-items:center;gap:6px}
 
 /* nav */
-.nav{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.2)}
+.nav{background:#fff;position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.2)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 2rem;height:72px;display:flex;justify-content:space-between;align-items:center}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;color:#0c0c0c}
 .nav-logo span{color:var(--y)}
-.nav-logo img{height:46px;width:auto}
+.nav-logo img{height:46px;width:auto;mix-blend-mode:multiply}
 .nav-links{display:flex;gap:28px;list-style:none}
 .nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.5px;color:#222;text-transform:uppercase;transition:color .2s}
 .nav-links a:hover{color:var(--y)}
-.nav-cta{background:var(--y);color:#fff;padding:.75rem 1.75rem;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:1px;text-transform:uppercase;transition:all .25s;white-space:nowrap;border:none;cursor:pointer}
+.nav-cta{background:var(--y);color:#fff;padding:.75rem 1.75rem;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:1px;text-transform:uppercase;transition:all .25s;white-space:nowrap;border:none;cursor:pointer;text-decoration:none;display:inline-block}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(240,196,25,.4)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-hamburger span{width:24px;height:2px;background:#0c0c0c;border-radius:2px;transition:all .3s;display:block}
+/* Mobile nav overlay */
+.mobile-nav{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.mobile-nav.open{display:flex}
+.mobile-nav a{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:3px;color:#fff;text-decoration:none;transition:color .2s}
+.mobile-nav a:hover{color:var(--y)}
+.mobile-nav-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;font-size:2rem;color:#fff;cursor:pointer;line-height:1}
 
 /* ticker */
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -493,16 +501,20 @@ textarea.f-in{min-height:120px;resize:vertical}
 .footer{background:#050505;border-top:2px solid var(--y);padding:4rem 0 2rem}
 .footer-grid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:2.5rem;margin-bottom:3rem}
 .footer h4{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:3px;color:var(--y);margin-bottom:1rem}
-.footer p,.footer li{color:#3a3a3a;line-height:2.1;font-size:.85rem}
-.footer a{color:#3a3a3a;transition:color .2s}
+.footer p,.footer li{color:#999;line-height:2.1;font-size:.85rem}
+.footer a{color:#999;transition:color .2s}
 .footer a:hover{color:var(--y)}
 .footer ul{list-style:none;padding:0}
-.footer-bottom{border-top:1px solid #0f0f0f;padding-top:1.75rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-bottom span,.footer-bottom a{color:#222;font-size:.78rem}
+.footer-logo-img{height:44px;width:auto;mix-blend-mode:lighten;filter:brightness(0) invert(1);opacity:.85;margin-bottom:1rem;display:block}
+.footer-bottom{border-top:1px solid #1a1a1a;padding-top:1.75rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom span,.footer-bottom a{color:#555;font-size:.78rem}
+.footer-bottom a:hover{color:var(--y)}
 
 @media(max-width:900px){
   .about-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
   .nav-links{display:none}
+  .nav-cta{display:none}
+  .nav-hamburger{display:flex}
   .hero h1{letter-spacing:0}
 }
 </style>
@@ -511,7 +523,7 @@ textarea.f-in{min-height:120px;resize:vertical}
 
 <nav class="nav">
   <div class="nav-inner">
-    ${brand.logo ? `<img src="${brand.logo}" alt="${biz.name}" style="height:46px;width:auto">` : `<div class="nav-logo">${biz.name.split(' ').map((w,i)=>i===0?`<span>${w}</span>`:w).join(' ')}</div>`}
+    ${brand.logo ? `<img src="${brand.logo}" alt="${biz.name}" style="height:46px;width:auto;mix-blend-mode:multiply">` : `<div class="nav-logo">${biz.name.split(' ').map((w,i)=>i===0?`<span>${w}</span>`:w).join(' ')}</div>`}
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
@@ -520,8 +532,21 @@ textarea.f-in{min-height:120px;resize:vertical}
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="tel:${biz.phone.replace(/\D/g,'')}" class="nav-cta">Call Now</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">✕</button>
+  <a href="#services" class="mobile-nav-link">Services</a>
+  <a href="#about" class="mobile-nav-link">About</a>
+  <a href="#gallery" class="mobile-nav-link">Gallery</a>
+  <a href="#faq" class="mobile-nav-link">FAQ</a>
+  <a href="#contact" class="mobile-nav-link">Contact</a>
+  <a href="tel:${biz.phone.replace(/\D/g,'')}" style="color:var(--y);font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;text-decoration:none;margin-top:1rem">${biz.phone}</a>
+</div>
 
 <div class="ticker">
   <div class="ticker-track">
@@ -537,7 +562,7 @@ textarea.f-in{min-height:120px;resize:vertical}
   <div class="hero-shade"></div>
   <div class="hero-body">
     <div class="hero-pill">Serving ${biz.city}, ${biz.state}</div>
-    <h1>${heroHeadline}<em>${biz.type}</em></h1>
+    <h1>${heroHeadline}</h1>
     <p class="hero-sub">${heroSub}</p>
     <div class="hero-btns">
       <a href="tel:${biz.phone.replace(/\D/g,'')}" class="btn-gold">Get Free Estimate</a>
@@ -572,11 +597,12 @@ textarea.f-in{min-height:120px;resize:vertical}
       <div class="svc-card">
         <div class="svc-icon">✦</div>
         <h3>${s}</h3>
-        <p>${svcDescriptions[s] || `Professional ${s.toLowerCase()} services delivered with precision, quality materials, and a satisfaction guarantee.`}</p>
+        <p class="svc-location" style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--y);margin-bottom:.6rem">${s} — ${biz.city}, ${biz.state}</p>
+        <p>${svcDescriptions[s] || `Professional ${s.toLowerCase()} services in ${biz.city} delivered with precision, quality materials, and a satisfaction guarantee.`}</p>
         <ul class="svc-items">
-          <li>Licensed professionals on every job</li>
+          <li>Licensed &amp; insured in ${biz.state}</li>
           <li>Premium materials &amp; workmanship</li>
-          <li>Written warranty included</li>
+          <li>${biz.warranty || 'Written warranty included'}</li>
           <li>Upfront, transparent pricing</li>
         </ul>
       </div>`).join('')}
@@ -726,14 +752,14 @@ ${biz.serviceAreas ? `
   <div class="w">
     <div class="footer-grid">
       <div>
-        <h4>${biz.name}</h4>
-        <p>${biz.tagline}</p>
-        ${biz.address ? `<p style="margin-top:.5rem">${biz.address}<br>${biz.city}, ${biz.state} ${biz.zip}</p>` : ''}
+        ${brand.logo ? `<img src="${brand.logo}" alt="${biz.name}" class="footer-logo-img">` : `<h4>${biz.name}</h4>`}
+        ${biz.tagline ? `<p>${biz.tagline}</p>` : ''}
+        ${biz.address ? `<p style="margin-top:.5rem">${biz.address}<br>${biz.city}, ${biz.state}${biz.zip ? ' ' + biz.zip : ''}</p>` : `<p>${biz.city}, ${biz.state}</p>`}
         ${biz.emergency ? `<p style="color:var(--y);margin-top:1rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;font-size:.85rem">24/7 EMERGENCY SERVICE</p>` : ''}
       </div>
       <div>
         <h4>Services</h4>
-        <ul>${biz.services.map(s=>`<li>${s}</li>`).join('')}</ul>
+        <ul>${biz.services.map(s=>`<li><a href="#services">${s}</a></li>`).join('')}</ul>
       </div>
       <div>
         <h4>Company</h4>
@@ -748,12 +774,13 @@ ${biz.serviceAreas ? `
         <h4>Contact</h4>
         <p><a href="tel:${biz.phone.replace(/\D/g,'')}">${biz.phone}</a></p>
         <p><a href="mailto:${biz.email}">${biz.email}</a></p>
-        ${biz.serviceAreas ? `<p style="margin-top:.75rem;color:#444">Serving ${biz.serviceAreas.split(',').slice(0,3).map(c=>c.trim()).join(', ')} &amp; more</p>` : ''}
+        ${biz.serviceAreas ? `<p style="margin-top:.75rem">Serving ${biz.serviceAreas.split(',').slice(0,3).map(c=>c.trim()).join(', ')} &amp; more</p>` : ''}
+        ${biz.financing ? `<p style="margin-top:.5rem;color:var(--y)">Financing Available</p>` : ''}
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; ${new Date().getFullYear()} ${biz.name}. All Rights Reserved.</span>
-      <div style="display:flex;gap:1.5rem">
+      <span>&copy; ${new Date().getFullYear()} ${biz.name}. All Rights Reserved. Licensed &amp; Insured.</span>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
         <a href="https://kingcontractor.com" target="_blank">Site by King Contractor Agency</a>
@@ -761,6 +788,22 @@ ${biz.serviceAreas ? `
     </div>
   </div>
 </footer>
+
+<script>
+  (function(){
+    var hamburger = document.getElementById('nav-hamburger');
+    var mobileNav = document.getElementById('mobile-nav');
+    var closeBtn  = document.getElementById('mobile-nav-close');
+    function openMenu(){mobileNav.classList.add('open');document.body.style.overflow='hidden';}
+    function closeMenu(){mobileNav.classList.remove('open');document.body.style.overflow='';}
+    if(hamburger) hamburger.addEventListener('click', openMenu);
+    if(closeBtn)  closeBtn.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mobile-nav-link').forEach(function(link){
+      link.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('keydown', function(e){if(e.key==='Escape') closeMenu();});
+  })();
+</script>
 
 </body>
 </html>`;
