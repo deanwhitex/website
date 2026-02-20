@@ -94,9 +94,8 @@ async function callClaude(prompt, submissionId) {
     method:"POST",
     headers:{ "Content-Type":"application/json" },
     body: JSON.stringify({
-      model:"claude-3-5-sonnet-20241022",
-      max_tokens:2000,
-      system: "You are a professional copywriter for home service contractors. You respond ONLY with raw valid JSON — no markdown, no code fences, no explanation, no text before or after the JSON object.",
+      model:"claude-sonnet-4-20250514",
+      max_tokens:4000,
       messages:[{ role:"user", content:prompt }]
     })
   });
