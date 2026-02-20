@@ -34,9 +34,6 @@ function Hero({ onStartBuilding }) {
         }
       `}</style>
 
-      {/* Gradient overlay */}
-      <div style={{position:'absolute', inset:0, background:'radial-gradient(circle at 50% 20%, rgba(240,196,25,0.08) 0%, transparent 60%)', pointerEvents:'none'}}/>
-
       {/* Header */}
       <div className="hero-header" style={{padding:'2rem', display:'flex', justifyContent:'center', position:'relative', zIndex:10}}>
         <img className="hero-logo" src="/kc-logo.png" alt="King Contractor Agency" style={{height:'80px', width:'auto'}} />
@@ -58,6 +55,7 @@ function Hero({ onStartBuilding }) {
           </h1>
 
           <p style={{
+            fontFamily:"'Inter', sans-serif",
             color:'rgba(255,255,255,0.7)',
             fontSize:'clamp(1rem, 2.5vw, 1.35rem)',
             maxWidth:'600px',
@@ -65,7 +63,7 @@ function Hero({ onStartBuilding }) {
             fontWeight:'400',
             lineHeight:1.6
           }}>
-            Professional websites in 5 minutes. AI writes everything. Download HTML or get instant live URL. $97.
+            Professional websites in 5 minutes. AI writes everything. Download HTML or get an instant live URL.
           </p>
 
           <button
@@ -92,6 +90,7 @@ function Hero({ onStartBuilding }) {
           }}>
             {['AI-Powered', 'No Coding', 'Instant Deploy'].map((item,i)=>(
               <div key={i} style={{
+                fontFamily:"'Inter', sans-serif",
                 color:'#888',
                 fontSize:'0.9rem',
                 fontWeight:'500',
@@ -107,7 +106,7 @@ function Hero({ onStartBuilding }) {
 
       {/* Footer info */}
       <div className="hero-footer" style={{padding:'2rem', textAlign:'center', color:'rgba(255,255,255,0.4)', fontSize:'0.85rem', position:'relative', zIndex:10}}>
-        Professional, SEO-optimized websites for home service contractors — powered by AI
+        Professional, SEO-optimized websites for home service contractors. Powered by AI
       </div>
     </div>
   );
@@ -122,7 +121,7 @@ function Generating({ businessName }) {
           Generating Your Website
         </h2>
         <p style={{color:'#888', fontSize:'1.1rem', marginBottom:'2rem'}}>
-          AI is writing your content... This takes 10-15 seconds.
+          AI is writing your content... This takes 15-30 seconds.
         </p>
         <div style={{color:'#666', fontSize:'0.9rem'}}>
           Do not refresh or close this page
