@@ -890,7 +890,13 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
   const dLen = biz.description.length;
   const sdata = SVC_DATA[biz.type] || { items:[], certs:[] };
 
-  const runGenerate = async () => {
+  const runGenerate = async (bizData = null, brandDataParam = null) => {
+    // Use provided data or fall back to state
+    const businessData = bizData || biz;
+    const brandData = brandDataParam || brand;
+    
+    console.log('runGenerate called with business:', businessData.name);
+    
     setGenerating(true);
     setAiStatus("loading");
     setAiLog([]);
@@ -902,7 +908,7 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
       log("Analyzing your business details...");
       await new Promise(r=>setTimeout(r,400));
       log("Crafting your hero headline & tagline...");
-      const ai = await generateAllContent(biz, submissionId);
+      const ai = await generateAllContent(businessData, submissionId);
       if (!ai) throw new Error("Could not parse AI response");
 
       log("Writing your About Us section...");
@@ -917,9 +923,9 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
 
       setAiContent(ai);
       const finalHtml = generateHTML({ 
-          business: { ...biz, serviceAreas: biz.serviceAreas }, 
-          services: biz.services || [],
-          brand, 
+          business: { ...businessData, serviceAreas: businessData.serviceAreas }, 
+          services: businessData.services || [],
+          brand: brandData, 
           aiContent: ai 
         });
       setHtml(finalHtml);
@@ -937,22 +943,24 @@ export default function Builder({ onFormComplete, autoGenerate, prefilledData, o
 
   // Auto-generate when returning from Stripe payment
   React.useEffect(() => {
-    if (autoGenerate && prefilledData) {
-      console.log('AutoGenerate triggered with data:', prefilledData);
-      console.log('submissionId prop:', submissionId);
+    if (autoGenerate && prefilledData && submissionId) {
+      console.log('=== AUTO-GENERATE START ===');
+      console.log('Business data:', prefilledData.business);
+      console.log('Brand data:', prefilledData.brand);
+      console.log('Submission ID:', submissionId);
       
-      if (!submissionId) {
-        console.error('WARNING: submissionId is missing!');
-      }
-      
-      // Set the data
+      // Set state for UI
       setBiz(prefilledData.business);
       setBrand(prefilledData.brand);
-      // Trigger generation after state updates
-      setTimeout(() => {
-        console.log('About to call runGenerate with submissionId:', submissionId);
-        runGenerate();
-      }, 1000);
+      setStep(4);
+      
+      // Call runGenerate with the data directly (don't wait for state)
+      const timer = setTimeout(() => {
+        console.log('Calling runGenerate with actual data (not state)');
+        runGenerate(prefilledData.business, prefilledData.brand);
+      }, 1500);
+      
+      return () => clearTimeout(timer);
     }
   }, [autoGenerate, prefilledData, submissionId]);
 
