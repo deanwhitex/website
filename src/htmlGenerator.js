@@ -277,29 +277,6 @@ export function generateHTML({ business, services, brand, aiContent }) {
       color: var(--text);
     }
     
-    .trust-strip {
-      display: flex;
-      gap: 3rem;
-      flex-wrap: wrap;
-      margin-top: 4rem;
-      padding-top: 3rem;
-      border-top: 1px solid rgba(255,255,255,0.2);
-    }
-    
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.95rem;
-      opacity: 0.9;
-    }
-    
-    .trust-item svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--secondary);
-    }
-    
     /* Sections */
     section {
       padding: 6rem 0;
@@ -725,10 +702,11 @@ export function generateHTML({ business, services, brand, aiContent }) {
       
       .footer-content {
         grid-template-columns: 1fr;
+        text-align: center;
       }
-      
-      .trust-strip {
-        gap: 1.5rem;
+
+      .footer-links {
+        padding: 0;
       }
     }
   </style>
